@@ -74,6 +74,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`single`](#single)
 - [`firstOf`](#firstOf)
 - [`assign`](#assign)
+- [`ignoreDeep`](#ignoreDeep)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -862,6 +863,30 @@ var r = j2j.run(template, {
     givenName: 'JOE'
 });
 console.log(r); // {id: 'JDOE', last: 'DOE', first: 'JOE'}
+```
+
+<a name="ignoreDeep" />
+#### `ignoreDeep` rule
+
+This rule can be used when dots in [content](#content) keys are part of the key rather than describing a path
+```js
+var template = {
+    content: {
+        'name.last': {
+            dataKey: 'familyName'
+        },
+        'name.first': {
+            dataKey: 'givenName'
+        }
+    },
+    ignoreDeep: true
+};
+
+var r = j2j.run(template, {
+    familyName: 'DOE',
+    givenName: 'JOE'
+});
+console.log(r); // {'name.last': 'DOE', 'name.first': 'JOE'}
 ```
 
 ## Overrides
