@@ -26,7 +26,7 @@
         "grunt-jsbeautifier": "^0.2.10",
         "grunt-mocha-test": "^0.12.7",
         "grunt-shell": "^1.1.2",
-        "jsonave": "0.0.2",
+        "jsonave": "0.0.3",
         "mocha": "^2.2.5"
     },
     "repository": {
