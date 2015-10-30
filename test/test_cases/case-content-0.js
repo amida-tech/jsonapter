@@ -29,10 +29,13 @@ exports.template = {
             },
             default: 'default value'
         }
-    }
+    },
+    default: ['default values']
 };
 
-exports.input = {
+exports.inputs = [];
+
+exports.inputs[0] = {
     a: {
         b: {
             c: 'value_0'
@@ -46,7 +49,11 @@ exports.input = {
     f: 'last'
 };
 
-exports.expected = {
+exports.inputs[1] = [exports.inputs[0], exports.inputs[0]];
+
+exports.expecteds = [];
+
+exports.expecteds[0] = {
     type: 'Testable',
     prop_a: 'value_0',
     prop_b: '_value_1_',
@@ -59,3 +66,5 @@ exports.expected = {
     },
     prop_default: 'default value'
 };
+
+exports.expecteds[1] = [exports.expecteds[0], exports.expecteds[0]];
