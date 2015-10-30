@@ -14,8 +14,12 @@ describe('content', function () {
     var engine = json2json.instance();
 
     it('case-content-0: basic', function () {
-        var actual = engine.run(case_0.template, case_0.input);
-        expect(actual).to.deep.equal(case_0.expected);
+        var template = case_0.template;
+        var n = case_0.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(template, case_0.inputs[i]);
+            expect(actual).to.deep.equal(case_0.expecteds[i]);
+        }
     });
 
     it('case-content-1: array', function () {
