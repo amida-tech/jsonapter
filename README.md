@@ -889,6 +889,75 @@ var r = j2j.run(template, {
 console.log(r); // {'name.last': 'DOE', 'name.first': 'JOE'}
 ```
 
+## Prune Values
+
+From the instance we can pass a third object parameter, as options, with an array named as `pruneValues`, to drop all the keys from the final output which have any of the values represented by the strings present in `pruneValues` array. This can always be override by using [`default`](#default) rule.
+Array pruneValues can take a min of 1 to a max of 3 string based rule. Comes in handy if we need to enforce dirty check on the templates.
+
+As of now values which can be pruned are:
+
+- `emptyString`
+- `emptyArray`
+- `NaN`
+
+```js
+
+var bbj2j = require('jsonapter');
+
+var options =   {pruneValues: ['emptyString', 'emptyArray', 'NaN']};
+
+var j2j = bbj2j.instance(null,null,options);
+
+
+var sampleInput = {
+    firstName: 'TIM',
+    lastName:'DOE',
+    middleName:'JOE',
+    familyName:'',
+    address:'',
+    age:NaN,
+    numbers:[],
+    friends:[],
+    groups:[1,2]
+};
+
+var sampleTemplate = {
+    content: {
+        firstName: {
+            dataKey: 'firstName'
+        },
+        middleName: {
+            dataKey: 'middleName'
+        },
+        lastName: {
+            dataKey: 'lastName'
+        },
+        familyName: {
+            dataKey: 'familyName'
+        },
+        address: {
+            dataKey: 'address', default: ""
+        },
+        age: {
+            dataKey: 'age'
+        },
+        numbers:{
+            dataKey:'numbers', default:[]
+        },
+        friends:{
+            dataKey:'friends'
+        },
+        groups:{
+            dataKey:'groups'
+        }
+    }
+};
+
+var r = j2j.run(sampleTemplate,sampleInput);
+
+console.log(r); // {"firstName":"TIM","middleName":"JOE","lastName":"DOE","address":"","numbers":[],"groups":[1,2]}
+```
+
 ## Overrides
 
 Each engine instance `j2j` contains all the implementation details as functions in the following keys: 
