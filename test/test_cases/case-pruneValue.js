@@ -1,16 +1,15 @@
 "use strict";
 
-
 exports.generalInputToTestMultipleTestCases = {
     firstName: 'TIM',
-    lastName:'DOE',
-    middleName:'JOE',
-    familyName:'',
-    address:'',
-    age:NaN,
-    numbers:[],
-    friends:[],
-    groups:[1,2]
+    lastName: 'DOE',
+    middleName: 'JOE',
+    familyName: '',
+    address: '',
+    age: NaN,
+    numbers: [],
+    friends: [],
+    groups: [1, 2]
 };
 
 exports.templateToMapGeneralInput = {
@@ -33,19 +32,19 @@ exports.templateToMapGeneralInput = {
         age: {
             dataKey: 'age'
         },
-        numbers:{
-            dataKey:'numbers'
+        numbers: {
+            dataKey: 'numbers'
         },
-        friends:{
-            dataKey:'friends'
+        friends: {
+            dataKey: 'friends'
         },
-        groups:{
-            dataKey:'groups'
+        groups: {
+            dataKey: 'groups'
         }
     }
 };
 
-exports.templateForDefaultValues={
+exports.templateForDefaultValues = {
     content: {
         firstName: {
             dataKey: 'firstName'
@@ -57,52 +56,56 @@ exports.templateForDefaultValues={
             dataKey: 'lastName'
         },
         familyName: {
-            dataKey: 'familyName',default: ""
+            dataKey: 'familyName',
+            default: ""
         },
         address: {
-            dataKey: 'address', default: ""
+            dataKey: 'address',
+            default: ""
         },
         age: {
-            dataKey: 'age',default:NaN
+            dataKey: 'age',
+            default: NaN
         },
-        numbers:{
-            dataKey:'numbers', default:[]
+        numbers: {
+            dataKey: 'numbers',
+            default: []
         },
-        friends:{
-            dataKey:'friends', default:[]
+        friends: {
+            dataKey: 'friends',
+            default: []
         },
-        groups:{
-            dataKey:'groups'
+        groups: {
+            dataKey: 'groups'
         }
     }
 };
 
-exports.outputForEmptyStringPresence =
-{
+exports.outputForEmptyStringPresence = {
     "address": "",
     "familyName": "",
     "firstName": "TIM",
-    "groups": [1,2],
+    "groups": [1, 2],
     "lastName": "DOE",
     "middleName": "JOE"
 };
-exports.outputForDefaultValues= {
+exports.outputForDefaultValues = {
     "address": "",
     "age": NaN,
     "familyName": "",
     "firstName": "TIM",
     "friends": [],
-    "groups": [1,2],
+    "groups": [1, 2],
     "lastName": "DOE",
     "middleName": "JOE",
     "numbers": []
 };
 
-exports.outputForNaNPresence={
+exports.outputForNaNPresence = {
 
     "age": NaN,
     "firstName": "TIM",
-    "groups": [1,2],
+    "groups": [1, 2],
     "lastName": "DOE",
     "middleName": "JOE"
 };
@@ -115,79 +118,81 @@ exports.input = {
             c3: undefined,
             c4: [],
             c5: NaN,
-            c6:true,
-            c7:false
+            c6: true,
+            c7: false
         },
         d: NaN,
         e: "value a.e",
         f: [{
             firstName: "sampleFirstName",
             group: []
-        },
-            {
-                firstName: "sampleFirstName",
-                group: [1,3]
-            },
-            {
-                firstName: "sampleFirstName",
-                group: []
-            }],
+        }, {
+            firstName: "sampleFirstName",
+            group: [1, 3]
+        }, {
+            firstName: "sampleFirstName",
+            group: []
+        }],
         g: {
             firstName: "sampleLastName",
             lastName: "",
             age: NaN,
             city: undefined,
-            Numbers:[]
+            Numbers: []
         },
-        h:{
-            firstName:"sampleFirstName",
+        h: {
+            firstName: "sampleFirstName",
             lastName: "",
             age: NaN,
             city: undefined,
-            "h.a1":"I am Key with dot"
+            "h.a1": "I am Key with dot"
         },
-        i:[{
-            showWeather:true,
-            weather:"sunny",
-            temperature:"70F",
-            city:"Dallas",
-            days:["mon","tue","wed"]
-        },
-            {
-                showWeather:true,
-                weather:"",
-                temperature:NaN,
-                city:undefined,
-                days:["thr","fri","sat"]
-            },
-            {
-                showWeather:true,
-                weather:"sunny",
-                temperature:"70F",
-                city:"Irving",
-                days:[]
-            },
-            {
-                showWeather:false,
-                weather:"sunny",
-                temperature:"70F",
-                city:"Ft.Worth",
-                days:[]
-            }]
-
+        i: [{
+            showWeather: true,
+            weather: "sunny",
+            temperature: "70F",
+            city: "Dallas",
+            days: ["mon", "tue", "wed"]
+        }, {
+            showWeather: true,
+            weather: "",
+            temperature: NaN,
+            city: undefined,
+            days: ["thr", "fri", "sat"]
+        }, {
+            showWeather: true,
+            weather: "sunny",
+            temperature: "70F",
+            city: "Irving",
+            days: []
+        }, {
+            showWeather: false,
+            weather: "sunny",
+            temperature: "70F",
+            city: "Ft.Worth",
+            days: []
+        }]
 
     }
 };
 
 var weatherTemplate = {
-    existsWhen:function(data){
+    existsWhen: function (data) {
         return data.showWeather === true;
     },
     content: {
-        weather: {dataKey: "weather"},
-        temperature: {dataKey: "temperature"},
-        city: {dataKey: "city"},
-        days: {dataKey: "days"}
+        weather: {
+            dataKey: "weather"
+        },
+        temperature: {
+            dataKey: "temperature"
+        },
+        city: {
+            dataKey: "city"
+        },
+        days: {
+            dataKey: "days"
+        }
     }
 };
 
@@ -222,49 +227,76 @@ exports.template = {
                     }
                 },
                 dest_b1: {
-                    dataKey: 'a.d',default:"I am Default for NaN"
+                    dataKey: 'a.d',
+                    default: "I am Default for NaN"
                 }
             },
             dataKey: 'a'
         },
-        dest_d:{dataKey:"a.d"},
-        dest_e:{dataKey:"a.e"},
+        dest_d: {
+            dataKey: "a.d"
+        },
+        dest_e: {
+            dataKey: "a.e"
+        },
         dest_f: {
             dataKey: "a.f",
             content: {
-                firstName: {dataKey: "firstName"},
-                group: {dataKey: "group"}
+                firstName: {
+                    dataKey: "firstName"
+                },
+                group: {
+                    dataKey: "group"
+                }
             }
         },
-        dest_g:{
-            dataKey:"a.g",
-            content:{
-                firstName:{dataKey:"firstName"},
-                lastName: {dataKey:"lastName"},
-                age: {dataKey:"age"},
-                city: {dataKey:"city"},
-                Numbers:{dataKey:"numbers",default:"1"},
-                "dotValue":{dataKey:"h.a1"}
+        dest_g: {
+            dataKey: "a.g",
+            content: {
+                firstName: {
+                    dataKey: "firstName"
+                },
+                lastName: {
+                    dataKey: "lastName"
+                },
+                age: {
+                    dataKey: "age"
+                },
+                city: {
+                    dataKey: "city"
+                },
+                Numbers: {
+                    dataKey: "numbers",
+                    default: "1"
+                },
+                "dotValue": {
+                    dataKey: "h.a1"
+                }
             }
         },
-        dest_h:{
-            ignoreDeep:true,
-            content:{
-                "dest.h1.firstName":{dataKey:"a.h.firstName"},
-                "dest.h2.lastName":{dataKey:"a.h.lastName"}
+        dest_h: {
+            ignoreDeep: true,
+            content: {
+                "dest.h1.firstName": {
+                    dataKey: "a.h.firstName"
+                },
+                "dest.h2.lastName": {
+                    dataKey: "a.h.lastName"
+                }
             }
         },
-        dest_i:{
-            arrayContent:[{
-                arrayContent :[ { dataKey:"a.i",value: weatherTemplate }],
-                default : []
+        dest_i: {
+            arrayContent: [{
+                arrayContent: [{
+                    dataKey: "a.i",
+                    value: weatherTemplate
+                }],
+                default: []
             }]
         }
 
     }
 };
-
-
 
 exports.expectedWithPruneOptions = {
     "dest_a1": "i am key c1",
@@ -277,14 +309,12 @@ exports.expectedWithPruneOptions = {
     "dest_e": "value a.e",
     "dest_f": [{
         "firstName": "sampleFirstName"
-    },
-        {
-            "firstName": "sampleFirstName",
-            "group": [1,3]
-        },
-        {
-            "firstName": "sampleFirstName"
-        }],
+    }, {
+        "firstName": "sampleFirstName",
+        "group": [1, 3]
+    }, {
+        "firstName": "sampleFirstName"
+    }],
     "dest_g": {
         "firstName": "sampleLastName",
         "Numbers": "1"
@@ -292,30 +322,26 @@ exports.expectedWithPruneOptions = {
     "dest_h": {
         "dest.h1.firstName": "sampleFirstName"
     },
-    dest_i: [
-        {
-            "city": "Dallas",
-            "temperature": "70F",
-            "weather": "sunny",
-            "days": [
-                "mon",
-                "tue",
-                "wed"
-            ]
-        },
-        {
-            "days": [
-                "thr",
-                "fri",
-                "sat"
-            ]
-        },
-        {
-            "city": "Irving",
-            "temperature": "70F",
-            "weather": "sunny"
-        }
-    ]
+    dest_i: [{
+        "city": "Dallas",
+        "temperature": "70F",
+        "weather": "sunny",
+        "days": [
+            "mon",
+            "tue",
+            "wed"
+        ]
+    }, {
+        "days": [
+            "thr",
+            "fri",
+            "sat"
+        ]
+    }, {
+        "city": "Irving",
+        "temperature": "70F",
+        "weather": "sunny"
+    }]
 };
 
 exports.expectedWithOutPruneOptions = {
@@ -331,20 +357,16 @@ exports.expectedWithOutPruneOptions = {
     },
     dest_d: NaN,
     dest_e: "value a.e",
-    dest_f: [
-        {
-            firstName: "sampleFirstName",
-            group: []
-        },
-        {
-            firstName: "sampleFirstName",
-            group: [1,3 ]
-        },
-        {
-            firstName: "sampleFirstName",
-            group: []
-        }
-    ],
+    dest_f: [{
+        firstName: "sampleFirstName",
+        group: []
+    }, {
+        firstName: "sampleFirstName",
+        group: [1, 3]
+    }, {
+        firstName: "sampleFirstName",
+        group: []
+    }],
     dest_g: {
         Numbers: "1",
         age: NaN,
@@ -355,33 +377,29 @@ exports.expectedWithOutPruneOptions = {
         "dest.h1.firstName": "sampleFirstName",
         "dest.h2.lastName": ""
     },
-    "dest_i": [
-        {
-            "city": "Dallas",
-            "days": [
-                "mon",
-                "tue",
-                "wed"
-            ],
-            "temperature": "70F",
-            "weather": "sunny"
-        },
-        {
-            "days": [
-                "thr",
-                "fri",
-                "sat"
-            ],
-            "temperature": NaN,
-            "weather": ""
-        },
-        {
-            "city": "Irving",
-            "days": [],
-            "temperature": "70F",
-            "weather": "sunny"
-        }
-    ]
+    "dest_i": [{
+        "city": "Dallas",
+        "days": [
+            "mon",
+            "tue",
+            "wed"
+        ],
+        "temperature": "70F",
+        "weather": "sunny"
+    }, {
+        "days": [
+            "thr",
+            "fri",
+            "sat"
+        ],
+        "temperature": NaN,
+        "weather": ""
+    }, {
+        "city": "Irving",
+        "days": [],
+        "temperature": "70F",
+        "weather": "sunny"
+    }]
 };
 
 exports.expectedWithEmptyArrays = {
@@ -397,16 +415,15 @@ exports.expectedWithEmptyArrays = {
     "dest_f": [{
         "firstName": "sampleFirstName",
         "group": []
-    },
-        {
-            "firstName": "sampleFirstName",
-            "group": [1,
-                3]
-        },
-        {
-            "firstName": "sampleFirstName",
-            "group": []
-        }],
+    }, {
+        "firstName": "sampleFirstName",
+        "group": [1,
+            3
+        ]
+    }, {
+        "firstName": "sampleFirstName",
+        "group": []
+    }],
     "dest_g": {
         "firstName": "sampleLastName",
         "Numbers": "1"
@@ -414,29 +431,25 @@ exports.expectedWithEmptyArrays = {
     "dest_h": {
         "dest.h1.firstName": "sampleFirstName"
     },
-    "dest_i": [
-        {
-            "city": "Dallas",
-            "temperature": "70F",
-            "weather": "sunny",
-            "days": [
-                "mon",
-                "tue",
-                "wed"
-            ]
-        },
-        {
-            "days": [
-                "thr",
-                "fri",
-                "sat"
-            ]
-        },
-        {
-            "city": "Irving",
-            "days": [],
-            "temperature": "70F",
-            "weather": "sunny"
-        }
-    ]
+    "dest_i": [{
+        "city": "Dallas",
+        "temperature": "70F",
+        "weather": "sunny",
+        "days": [
+            "mon",
+            "tue",
+            "wed"
+        ]
+    }, {
+        "days": [
+            "thr",
+            "fri",
+            "sat"
+        ]
+    }, {
+        "city": "Irving",
+        "days": [],
+        "temperature": "70F",
+        "weather": "sunny"
+    }]
 };
