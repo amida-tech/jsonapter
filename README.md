@@ -75,6 +75,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`firstOf`](#firstOf)
 - [`assign`](#assign)
 - [`ignoreDeep`](#ignoreDeep)
+- [`paramKey`](#paramKey)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -218,6 +219,23 @@ var r2 = j2j.run(template, {
 });
 console.log(r2); // null
 ```
+
+<a name="paramKey" />
+#### `paramKey` rule
+
+This rule selects a particular property of params, which can be passed as a optional third parameter to the run function as shown below :
+```js
+var template = {
+    paramKey: 'a'
+};
+
+var r0 = j2j.run(template, {}, {
+    a: 1
+});
+console.log(r0); // 1
+
+```
+
 
 <a name="value" />
 #### `value` rule
@@ -973,7 +991,7 @@ Each engine instance `j2j` contains all the implementation details as functions 
 - `actionKeys`
 - `dataKeyToInput`
 - `dataKeyArrayToInput`
-- `context
+- `context`
 
 `run` is the entry point. `content`, `arrayContent`, `value`, `constant`, `firstOf` and `assign` are called action keys and listed in `actionKeys` array.  Only one of `actionKeys` can appear on a template on the same level.  None of these keys are designed to be overridden except `context`.  However you can add additional functionality by adding new data and action keys.
 
