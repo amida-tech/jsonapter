@@ -11,6 +11,9 @@
         "verify": "grunt"
     },
     "author": "Afsin Ustundag <afsin.ustundag@us.pwc.com>",
+    "contributors": [
+        "Gautam Dev <gdind2003@gmail.com>"
+    ],
     "license": "Apache-2.0",
     "engines": {
         "node": ">= 0.10.0"
