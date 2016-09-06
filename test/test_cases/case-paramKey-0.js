@@ -2,10 +2,10 @@
 
 exports.template = {
     content: {
-        created : {
+        created: {
             paramKey: 'timestamp'
         },
-        updated : {
+        updated: {
             paramKey: 'timestamp'
         }
     }
@@ -14,11 +14,9 @@ exports.template = {
 exports.inputs = [];
 exports.expecteds = [];
 
-exports.inputs[0] = {
-};
+exports.inputs[0] = {};
 
 exports.expecteds[0] = {
     created: '2016-08-24T15:38:07-05:00',
     updated: '2016-08-24T15:38:07-05:00'
 };
-

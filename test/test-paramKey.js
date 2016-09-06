@@ -7,7 +7,9 @@ var json2json = require('../index');
 var case_0 = require('./test_cases/case-paramKey-0');
 var case_1 = require('./test_cases/case-paramKey-1');
 
-var params = {timestamp: "2016-08-24T15:38:07-05:00"};
+var params = {
+    timestamp: "2016-08-24T15:38:07-05:00"
+};
 
 var expect = chai.expect;
 
