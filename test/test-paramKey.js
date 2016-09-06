@@ -6,9 +6,15 @@ var json2json = require('../index');
 
 var case_0 = require('./test_cases/case-paramKey-0');
 var case_1 = require('./test_cases/case-paramKey-1');
+var case_2 = require('./test_cases/case-paramKey-2');
 
 var params = {
     timestamp: "2016-08-24T15:38:07-05:00"
+};
+
+var params2 = {
+    timestamp2: "2016-08-24T15:38:07-06:00",
+    timestamp3: "2016-08-24T15:38:07-07:00",
 };
 
 var expect = chai.expect;
@@ -34,4 +40,12 @@ describe('paramKey', function () {
         }
     });
 
+    it('case-paramKey-2: paramKey ', function () {
+        var template = case_2.template;
+        var n = case_2.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(template, case_1.inputs[i], params2);
+            expect(actual).to.deep.equal(case_2.expecteds[i]);
+        }
+    });
 });
