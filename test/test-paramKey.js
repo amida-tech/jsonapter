@@ -14,7 +14,7 @@ var params = {
 
 var params2 = {
     timestamp2: "2016-08-24T15:38:07-06:00",
-    timestamp3: "2016-08-24T15:38:07-07:00",
+    timestamp3: "2016-08-24T15:38:07-07:00"
 };
 
 var expect = chai.expect;
