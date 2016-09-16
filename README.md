@@ -234,6 +234,26 @@ var r0 = j2j.run(template, {}, {
 });
 console.log(r0); // 1
 
+The paramKey value can be a object
+
+var template = {
+    paramKey: 'paramObject'
+};
+
+var r0 = j2j.run(template, {}, {
+    paramObject: {
+        a : {
+            b: "test"
+        }
+    }
+});
+console.log(r0);
+
+{
+   a : {
+          b: "test"
+   }
+}
 ```
 
 
