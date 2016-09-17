@@ -284,16 +284,15 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
-One can pass the params to the value function.  
+One can also use the params to the value function.  
 ```js
 var template = {
     value: function (input, params) {
         return params.title + ' ' + input;
-    },
-    title: 'Mr'
+    }
 };
 
-var r = j2j.run(template, 'Joe');
+var r = j2j.run(template, 'Joe', {title: 'Mr'});
 console.log(r); // Mr Joe
 ```
 
