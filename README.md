@@ -284,6 +284,20 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
+One can pass the params to the value function.  
+```js
+var template = {
+    value: function (input, params) {
+        return params.title + ' ' + input;
+    },
+    title: 'Mr'
+};
+
+var r = j2j.run(template, 'Joe');
+console.log(r); // Mr Joe
+```
+
+
 
 This rule can be used to return a primary data type
 ```js
