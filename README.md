@@ -287,13 +287,24 @@ console.log(r); // JOE
 One can also use the params to the value function.  
 ```js
 var template = {
+    dataKey: 'name',
     value: function (input, params) {
-        return params.title + ' ' + input;
+        return params.title[input.gender] + ' ' + input;
     }
 };
 
-var r = j2j.run(template, 'Joe', {title: 'Mr'});
+var params = {title: { M: 'Mr', F: 'Ms'}};
+
+var input = {name: 'Joe', gender: 'M'}};
+
+var r = j2j.run(template, input, params);
 console.log(r); // Mr Joe
+
+var input1 = {name: 'Jane', gender: 'F'}};
+
+var r1 = j2j.run(template, input1, params);
+console.log(r1); // Ms Jane
+
 ```
 
 
