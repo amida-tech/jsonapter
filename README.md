@@ -234,6 +234,26 @@ var r0 = j2j.run(template, {}, {
 });
 console.log(r0); // 1
 
+The paramKey value can be a object
+
+var template = {
+    paramKey: 'paramObject'
+};
+
+var r0 = j2j.run(template, {}, {
+    paramObject: {
+        a : {
+            b: "test"
+        }
+    }
+});
+console.log(r0);
+
+{
+   a : {
+          b: "test"
+   }
+}
 ```
 
 
@@ -264,6 +284,30 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
+One can also use the params to the value function.  
+```js
+var template = {
+    dataKey: 'name',
+    value: function (input, params) {
+        return params.title[input.gender] + ' ' + input;
+    }
+};
+
+var params = {title: { M: 'Mr', F: 'Ms'}};
+
+var input = {name: 'Joe', gender: 'M'}};
+
+var r = j2j.run(template, input, params);
+console.log(r); // Mr Joe
+
+var input1 = {name: 'Jane', gender: 'F'}};
+
+var r1 = j2j.run(template, input1, params);
+console.log(r1); // Ms Jane
+
+```
+
+
 
 This rule can be used to return a primary data type
 ```js

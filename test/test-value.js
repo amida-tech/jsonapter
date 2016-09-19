@@ -6,6 +6,7 @@ var json2json = require('../index');
 
 var case_0 = require('./test_cases/case-value-0');
 var case_1 = require('./test_cases/case-value-1');
+var case_2 = require('./test_cases/case-value-2');
 
 var expect = chai.expect;
 
@@ -24,6 +25,11 @@ describe('value', function () {
     it('case-value-1: null array', function () {
         var actual = engine.run(case_1.template, case_1.input);
         expect(actual).to.deep.equal(case_1.expected);
+    });
+
+    it('case-value-2: array with params', function () {
+        var actual = engine.run(case_2.template, case_2.input, {limit : 1});
+        expect(actual).to.deep.equal(case_2.expected);
     });
 
 });
