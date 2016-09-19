@@ -1,20 +1,26 @@
 "use strict";
 
-var mask = function(input, params)  {
+var mask = function (input, params) {
     return params.mask ? params.maskCharacter : input;
 };
 
 exports.templates = [{
     content: {
-        value: {dataKey: 'a', value: mask}
+        value: {
+            dataKey: 'a',
+            value: mask
+        }
     }
 }, {
     content: {
-        value: {dataKey: 'a.b'},
-        test:  {paramKey: 'tst'}
+        value: {
+            dataKey: 'a.b'
+        },
+        test: {
+            paramKey: 'tst'
+        }
     }
-}
-];
+}];
 
 exports.inputs = [];
 exports.expecteds = [];
@@ -29,12 +35,17 @@ exports.inputs[1] = {
     }
 };
 
-
 exports.expecteds[0] = {
     value: "#"
 };
 
 exports.expecteds[1] = {
     value: "data",
-    test: { a: {b: { c: "test" }}}
+    test: {
+        a: {
+            b: {
+                c: "test"
+            }
+        }
+    }
 };

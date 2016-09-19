@@ -28,7 +28,9 @@ describe('value', function () {
     });
 
     it('case-value-2: array with params', function () {
-        var actual = engine.run(case_2.template, case_2.input, {limit : 1});
+        var actual = engine.run(case_2.template, case_2.input, {
+            limit: 1
+        });
         expect(actual).to.deep.equal(case_2.expected);
     });
 
