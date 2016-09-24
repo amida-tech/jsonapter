@@ -76,6 +76,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`assign`](#assign)
 - [`ignoreDeep`](#ignoreDeep)
 - [`paramKey`](#paramKey)
+- [`template`](#template)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -256,6 +257,33 @@ console.log(r0);
 }
 ```
 
+<a name="template" />
+#### `template` rule
+
+This rule is primarily used to apply a nested template.
+```js
+var nestedTemplate = {
+    value: function(input) {
+        return input.toUpperCase();
+    },
+    dataKey: 'b'
+};
+
+var template = {
+    template: nestedTemplate,
+    dataKey: 'a'
+};
+
+var r = j2j.run(template, {
+    a: {
+        b: 'value'
+    }
+});
+console.log(r); // 'VALUE'
+```
+
+
+
 
 <a name="value" />
 #### `value` rule
@@ -308,7 +336,6 @@ console.log(r1); // Ms Jane
 ```
 
 
-
 This rule can be used to return a primary data type
 ```js
 var template = {
@@ -322,26 +349,31 @@ var r = j2j.run(template, {
 console.log(r); // 'names are classified'
 ```
 
-If `value` is assigned to an object, the object is assumed to be a nested template and evaluated as such
+This rule can be used to as lookup with `lookup:true`. When it is an object without `dataKey` we take it as literally.
+The `value` should not be used as a nested template. If `dataKey` is provided one can use it for lookup as shown below:
+
 ```js
-var nestedTemplate = {
-    value: function(input) {
-        return input.toUpperCase();
-    },
-    dataKey: 'b'
-};
-
 var template = {
-    value: nestedTemplate,
-    dataKey: 'a'
-};
-
-var r = j2j.run(template, {
-    a: {
-        b: 'value'
+    content: {
+         title: { 
+            dataKey: "gender", 
+            value: {
+                M: 'Mr', 
+                F: 'Ms' 
+             },
+             lookup: true
+            }
+         name : { dataKey: "name" }
     }
-});
-console.log(r); // 'VALUE'
+}
+
+var input = {name: 'Joe', gender: 'M'}};
+
+var r = j2j.run(template, input);
+
+console.log(r); // { title: "Mr", name : "Joe" }
+
+
 ```
 
 <a name="content" />
