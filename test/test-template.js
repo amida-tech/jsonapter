@@ -9,7 +9,7 @@ var case_1 = require('./test_cases/case-template-1');
 
 var expect = chai.expect;
 
-describe('value', function () {
+describe('template', function () {
     var engine = json2json.instance();
 
     it('case-template-0: basic', function () {

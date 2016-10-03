@@ -2,7 +2,7 @@
 
 exports.template = {
     content: {
-        name: {dataKey: 'name'},
+        name: { dataKey: 'name' },
         title: {
             dataKey: 'gender',
             value: {
@@ -36,4 +36,3 @@ exports.expecteds[1] = {
     name: 'John',
     title: 'Mr'
 };
-
