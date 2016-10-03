@@ -1,7 +1,7 @@
 "use strict";
 
 var nestedTemplate = {
-    value: function(input) {
+    value: function (input) {
         return input.toUpperCase();
     },
     dataKey: 'b.name'
