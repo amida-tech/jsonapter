@@ -53,7 +53,16 @@ describe('paramKey', function () {
         }
     });
 
-    it('case-paramKey-2: paramKey ', function () {
+    it('case-paramKey-2: paramKey without params', function () {
+        var template = case_1.template;
+        var n = case_1.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(template, case_1.inputs[i]);
+            expect(actual).to.deep.equal(null);
+        }
+    });
+
+    it('case-paramKey-3: paramKey ', function () {
         var template = case_2.template;
         var n = case_2.inputs.length;
         for (var i = 0; i < n; ++i) {
@@ -62,7 +71,7 @@ describe('paramKey', function () {
         }
     });
 
-    it('case-paramKey-3: paramKey ', function () {
+    it('case-paramKey-4: paramKey ', function () {
         var templates = case_3.templates;
         var n = case_3.inputs.length;
         for (var i = 0; i < n; ++i) {
