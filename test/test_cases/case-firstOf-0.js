@@ -41,7 +41,7 @@ exports.template = {
         },
         item: {
             firstOf: [dog, book]
-        },
+        }
     }
 };
 
