@@ -505,7 +505,7 @@ describe('examples', function () {
                 dest_b: {
                     dataKey: 'b',
                     existsUnless: _.partialRight(_.has, 'c')
-                },
+                }
             },
             existsUnless: 'private'
         };
@@ -537,6 +537,17 @@ describe('examples', function () {
         });
         //console.log(r2); // null
         expect(r2).to.equal(null);
+
+        template.content.existsUnless = {private: 'Y'};
+        var r3 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b',
+            private: 'N'
+        });
+        //console.log(r1.dest_a); // 'value_a'
+        //console.log(r1.dest_b); // 'value_b'
+        expect(r3).to.equal(null);
+
     });
 
     it('existsUnless - 1', function () {
