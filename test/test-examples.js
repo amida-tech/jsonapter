@@ -507,9 +507,7 @@ describe('examples', function () {
                     existsUnless: _.partialRight(_.has, 'c')
                 },
             },
-            existsUnless: function (input) {
-                return input && input.private;
-            }
+            existsUnless: 'private'
         };
 
         var r0 = j2j.run(template, {
