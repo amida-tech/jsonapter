@@ -416,11 +416,9 @@ describe('examples', function () {
                 dest_b: {
                     dataKey: 'b',
                     existsWhen: _.partialRight(_.has, 'c')
-                },
+                }
             },
-            existsWhen: function (input) {
-                return input && input.public;
-            }
+            existsWhen: "public"
         };
 
         var r0 = j2j.run(template, {
@@ -736,9 +734,7 @@ describe('examples', function () {
                     dataKey: 'givenName'
                 }
             },
-            existsWhen: function (input) {
-                return input && input.familyName && input.givenName;
-            }
+            existsWhen: ['familyName', 'givenName']
         };
 
         var template = {
@@ -874,7 +870,7 @@ describe('examples', function () {
         var meds = {
             'aspirin': {
                 id: 1
-            },
+            }
         };
 
         var override = {
