@@ -548,6 +548,7 @@ console.log(r); // 'CONST'
 #### `existsWhen` rule
 
 This rule must be a predicate or array of predicates. If the predicate evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
+The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
 
 ```js
 var _ = require('lodash');
@@ -562,9 +563,7 @@ var template = {
             existsWhen: _.partialRight(_.has, 'c')
         },
     },
-    existsWhen: function (input) {
-        return input && input.public;
-    }
+    existsWhen: 'public'
 };
 
 var r0 = j2j.run(template, {

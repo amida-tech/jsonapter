@@ -23,6 +23,17 @@ describe('value', function () {
         }
     });
 
+    it('case-value-0: basic with existsWhen as object', function () {
+        var template = case_0.template;
+        template.content.prop_b.existsWhen = {type: 'Detailed'};
+
+        var n = case_0.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(template, case_0.inputs[i]);
+            expect(actual).to.deep.equal(case_0.expecteds[i]);
+        }
+    });
+
     it('case-value-1: null array', function () {
         var actual = engine.run(case_1.template, case_1.input);
         expect(actual).to.deep.equal(case_1.expected);

@@ -25,8 +25,8 @@ exports.template = {
         },
         prop_b: {
             template: nestedTemplate,
-            existsWhen: function (input) {
-                return (input && input.type) === 'Detailed';
+            existsWhen: {
+                type: 'Detailed'
             }
         }
     }
