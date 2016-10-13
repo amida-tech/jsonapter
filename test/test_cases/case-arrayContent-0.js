@@ -71,18 +71,16 @@ exports.inputs[0] = {
     }
 };
 
-exports.expecteds[0] = [
-    {
-        title: 'Person & Dog',
-        comment: 'dogs are good'
-    }, {
-        personName: 'DOE, JOE',
-        personAge: 35
-    }, {
-        dogName: 'Paws',
-        dogAge: 5
-    }
-];
+exports.expecteds[0] = [{
+    title: 'Person & Dog',
+    comment: 'dogs are good'
+}, {
+    personName: 'DOE, JOE',
+    personAge: 35
+}, {
+    dogName: 'Paws',
+    dogAge: 5
+}];
 
 exports.inputs[1] = {
     team: {

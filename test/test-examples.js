@@ -538,7 +538,7 @@ describe('examples', function () {
         //console.log(r2); // null
         expect(r2).to.equal(null);
 
-        template.existsUnless = {private: 'Y'};
+        template.existsUnless = { private: 'Y' };
         var r3 = j2j.run(template, {
             a: 'value_a',
             b: 'value_b',

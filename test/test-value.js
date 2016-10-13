@@ -25,7 +25,7 @@ describe('value', function () {
 
     it('case-value-0: basic with existsWhen as object', function () {
         var template = case_0.template;
-        template.content.prop_b.existsWhen = {type: 'Detailed'};
+        template.content.prop_b.existsWhen = { type: 'Detailed' };
 
         var n = case_0.inputs.length;
         for (var i = 0; i < n; ++i) {
