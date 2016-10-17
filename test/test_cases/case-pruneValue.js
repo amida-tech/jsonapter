@@ -177,9 +177,7 @@ exports.input = {
 };
 
 var weatherTemplate = {
-    existsWhen: function (data) {
-        return data.showWeather === true;
-    },
+    existsWhen: 'showWeather',
     content: {
         weather: {
             dataKey: "weather"

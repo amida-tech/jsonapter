@@ -461,7 +461,7 @@ describe('examples', function () {
                 },
                 dest_b: {
                     dataKey: 'b'
-                },
+                }
             },
             existsWhen: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
         };
@@ -610,7 +610,7 @@ describe('examples', function () {
         var template = {
             content: {
                 name: {
-                    value: nameTemplate,
+                    template: nameTemplate,
                     dataTransform: function (input) {
                         return {
                             familyName: input.lastName,
@@ -689,7 +689,7 @@ describe('examples', function () {
         var template = {
             content: {
                 last: {
-                    dataKey: 'familyName',
+                    dataKey: 'familyName'
                 },
                 given: {
                     dataKey: 'givenName',
@@ -785,9 +785,7 @@ describe('examples', function () {
                     dataKey: 'givenName'
                 }
             },
-            existsWhen: function (input) {
-                return input && input.familyName && input.givenName;
-            }
+            existsWhen: ['familyName', 'givenName']
         };
 
         var template = {

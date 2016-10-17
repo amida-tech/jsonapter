@@ -24,15 +24,15 @@ exports.template = {
             value: 'TITLE'
         },
         prop_a: {
-            value: function (input) {
-                return input === 'Resolved';
+            value: function (status) {
+                return status === 'Resolved';
             },
             dataKey: 'status'
         },
         prop_b: {
-            value: nestedTemplate,
-            existsWhen: function (input) {
-                return (input && input.type) === 'Detailed';
+            template: nestedTemplate,
+            existsWhen: {
+                type: 'Detailed'
             }
         }
     }

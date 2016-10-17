@@ -12,8 +12,8 @@ var dog = {
             dataKey: 'birthYear'
         }
     },
-    existsWhen: function (input) {
-        return input.type === 'dog';
+    existsWhen: {
+         type: 'dog'
     }
 };
 
@@ -29,8 +29,8 @@ var book = {
             dataKey: 'printYear'
         }
     },
-    existsWhen: function (input) {
-        return input.type === 'book';
+    existsWhen: {
+        type: 'book'
     }
 };
 
@@ -40,7 +40,9 @@ exports.template = {
             value: 'Things'
         },
         item: {
-            firstOf: [dog, book]
+            firstOf: [dog,
+                book
+            ]
         }
     }
 };
