@@ -663,12 +663,6 @@ describe('examples', function () {
                             familyName: { dataKey: "lastName" },
                             givenName: { dataKey: "firstName" }
                         }
-                    },
-                    dataTransform1: function (input) {
-                        return {
-                            familyName: input.lastName,
-                            givenName: input.firstName
-                        };
                     }
                 },
                 age: {
