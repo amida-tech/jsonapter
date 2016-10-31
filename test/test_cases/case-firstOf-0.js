@@ -13,7 +13,7 @@ var dog = {
         }
     },
     existsWhen: {
-         type: 'dog'
+        type: 'dog'
     }
 };
 

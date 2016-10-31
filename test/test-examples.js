@@ -718,7 +718,7 @@ describe('examples', function () {
         };
 
         var r = j2j.run(template, {
-            info : {
+            info: {
                 lastName: 'DOE',
                 firstName: 'JOE'
             },
