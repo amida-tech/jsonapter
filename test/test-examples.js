@@ -595,7 +595,7 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
-    it('dataTransform - 0', function () {
+    it('dataTransform - with function', function () {
         var nameTemplate = {
             content: {
                 last: {
@@ -630,6 +630,98 @@ describe('examples', function () {
         var r = j2j.run(template, {
             lastName: 'DOE',
             firstName: 'JOE',
+            birthYear: 1980
+        });
+        //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
+        expect(r).to.deep.equal({
+            name: {
+                last: 'DOE',
+                first: 'JOE'
+            },
+            age: 35
+        });
+    });
+
+    it('dataTransform - with template', function () {
+        var nameTemplate = {
+            content: {
+                last: {
+                    dataKey: 'familyName'
+                },
+                first: {
+                    dataKey: 'givenName'
+                }
+            }
+        };
+
+        var template = {
+            content: {
+                name: {
+                    template: nameTemplate,
+                    dataTransform: {
+                        content: {
+                            familyName: { dataKey: "lastName" },
+                            givenName: { dataKey: "firstName" }
+                        }
+                    }
+                },
+                age: {
+                    value: function (input) {
+                        return 2015 - input;
+                    },
+                    dataKey: 'birthYear'
+                }
+            }
+        };
+
+        var r = j2j.run(template, {
+            lastName: 'DOE',
+            firstName: 'JOE',
+            birthYear: 1980
+        });
+        //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
+        expect(r).to.deep.equal({
+            name: {
+                last: 'DOE',
+                first: 'JOE'
+            },
+            age: 35
+        });
+    });
+
+    it('dataTransform - with String', function () {
+        var nameTemplate = {
+            content: {
+                last: {
+                    dataKey: 'lastName'
+                },
+                first: {
+                    dataKey: 'firstName'
+                }
+            }
+        };
+
+        var template = {
+            content: {
+                name: {
+                    template: nameTemplate,
+                    dataTransform: "info"
+
+                },
+                age: {
+                    value: function (input) {
+                        return 2015 - input;
+                    },
+                    dataKey: 'birthYear'
+                }
+            }
+        };
+
+        var r = j2j.run(template, {
+            info : {
+                lastName: 'DOE',
+                firstName: 'JOE'
+            },
             birthYear: 1980
         });
         //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}

@@ -724,7 +724,7 @@ console.log(r2); // null
 <a name="dataTransform" />
 #### `dataTransform` rule
 
-This rule transforms `input` so that existing templates can be reused
+This rule transforms `input` so that existing templates can be reused. It can be a string, or a jsonapter template as well as a function.
 ```js
 var nameTemplate = {
     content: {
@@ -764,6 +764,19 @@ var r = j2j.run(template, {
 });
 console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
 ```
+
+In the above example `dataTransform` can be a jsonapter template as shown below :
+```js
+    
+    dataTransform: {
+        content: {
+           familyName: { dataKey: "lastName" },
+           givenName: { dataKey: "firstName" }
+       }
+    },
+```
+
+
 
 <a name="default" />
 #### `default` rule
