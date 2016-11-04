@@ -261,6 +261,42 @@ describe('examples', function () {
         expect(r).to.equal('VALUE');
     });
 
+    it('Value of current element - empty object', function () {
+        var template = {
+            dataKey: "product",
+            content: {
+                type: {constant: 'product'},
+                value: {}
+            }
+        };
+
+        var r0 = j2j.run(template, {product: "Ipad"});
+        console.log(r0);
+
+        expect(r0).to.deep.equal({type: 'product', value: 'Ipad'}
+        );
+    });
+
+    it('Value of current element array - empty object', function () {
+        var template = {
+            dataKey: "products",
+            content: {
+                type: {constant: 'product'},
+                value: {}
+            }
+        };
+
+        var r0 = j2j.run(template, {products: ["Ipad", "Ipod"]});
+        console.log(r0);
+
+        expect(r0).to.deep.equal(
+            [
+                {type: 'product', value: 'Ipad'},
+                {type: 'product', value: 'Ipod'}
+            ]
+        );
+    });
+
     it('content - 0', function () {
         var nameTemplate = {
             content: {
