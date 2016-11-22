@@ -341,12 +341,12 @@ var template = {
 
 var params = {title: { M: 'Mr', F: 'Ms'}};
 
-var input = {name: 'Joe', gender: 'M'}};
+var input = {name: 'Joe', gender: 'M'};
 
 var r = j2j.run(template, input, params);
 console.log(r); // Mr Joe
 
-var input1 = {name: 'Jane', gender: 'F'}};
+var input1 = {name: 'Jane', gender: 'F'};
 
 var r1 = j2j.run(template, input1, params);
 console.log(r1); // Ms Jane
@@ -380,12 +380,12 @@ var template = {
                 F: 'Ms' 
              },
              lookup: true
-            }
+            },
          name : { dataKey: "name" }
     }
 }
 
-var input = {name: 'Joe', gender: 'M'}};
+var input = {name: 'Joe', gender: 'M'};
 
 var r = j2j.run(template, input);
 
@@ -791,7 +791,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
            familyName: { dataKey: "lastName" },
            givenName: { dataKey: "firstName" }
        }
-    },
+    }
 ```
 
 
