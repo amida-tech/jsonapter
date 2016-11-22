@@ -24,8 +24,8 @@ exports.template = {
             value: 'TITLE'
         },
         prop_a: {
-            value: function (status) {
-                return status === 'Resolved';
+            value: function (status, parent) {
+                return parent.stage === 'Final' && status === 'Resolved';
             },
             dataKey: 'status'
         },
@@ -59,6 +59,18 @@ exports.expecteds[0] = {
 exports.inputs[1] = {
     status: 'Resolved',
     type: 'Detailed',
+    stage: 'Initial',
+    detail: {
+        name: 'Joe',
+        values: [1, 4],
+        other: 'comment'
+    }
+};
+
+exports.inputs[2] = {
+    status: 'Resolved',
+    type: 'Detailed',
+    stage: 'Final',
     detail: {
         name: 'Joe',
         values: [1, 4],
@@ -67,6 +79,16 @@ exports.inputs[1] = {
 };
 
 exports.expecteds[1] = {
+    title: 'TITLE',
+    prop_a: false,
+    prop_b: {
+        n_prop_a: 'Joe',
+        n_prop_b: [4, 16],
+        n_prop_c: ['comment']
+    }
+};
+
+exports.expecteds[2] = {
     title: 'TITLE',
     prop_a: true,
     prop_b: {

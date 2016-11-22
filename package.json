@@ -19,7 +19,7 @@
         "node": ">= 0.10.0"
     },
     "dependencies": {
-        "lodash": "^4.15.0"
+        "lodash": "^4.17.2"
     },
     "devDependencies": {
         "chai": "^3.0.0",
@@ -30,7 +30,7 @@
         "grunt-mocha-test": "^0.12.7",
         "grunt-shell": "^1.1.2",
         "jsonave": "0.0.3",
-        "mocha": "^2.2.5"
+        "mocha": "^3.1.2"
     },
     "repository": {
         "type": "git",
