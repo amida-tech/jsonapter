@@ -1078,4 +1078,19 @@ describe('examples', function () {
             }
         });
     });
+
+    it('case-value-3: value with parent', function () {
+        var template = {
+            value: function (input, parent) {
+                return parent.title.toUpperCase() + ' ' + input.toUpperCase();
+            },
+            dataKey: 'name'
+        };
+
+        var r = j2j.run(template, {
+            name: 'joe',
+            title: 'mr'
+        });
+    });
+
 });
