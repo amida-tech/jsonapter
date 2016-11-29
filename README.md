@@ -312,23 +312,41 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
+One can also use the parent inside the value function.  
+
+```js
+        var template = {
+            value: function (input, parent) {
+                return parent.title.toUpperCase() + ' ' + input.toUpperCase();
+            },
+            dataKey: 'name'
+        };
+
+        var r = j2j.run(template, {
+            name: 'joe',
+            title: 'mr'
+        });
+        console.log(r); // MR JOE
+```
+
+
 One can also use the params to the value function.  
 ```js
 var template = {
     dataKey: 'name',
-    value: function (input, params) {
+    value: function (input, parent, params) {
         return params.title[input.gender] + ' ' + input;
     }
 };
 
 var params = {title: { M: 'Mr', F: 'Ms'}};
 
-var input = {name: 'Joe', gender: 'M'}};
+var input = {name: 'Joe', gender: 'M'};
 
 var r = j2j.run(template, input, params);
 console.log(r); // Mr Joe
 
-var input1 = {name: 'Jane', gender: 'F'}};
+var input1 = {name: 'Jane', gender: 'F'};
 
 var r1 = j2j.run(template, input1, params);
 console.log(r1); // Ms Jane
@@ -362,12 +380,12 @@ var template = {
                 F: 'Ms' 
              },
              lookup: true
-            }
+            },
          name : { dataKey: "name" }
     }
 }
 
-var input = {name: 'Joe', gender: 'M'}};
+var input = {name: 'Joe', gender: 'M'};
 
 var r = j2j.run(template, input);
 
@@ -773,7 +791,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
            familyName: { dataKey: "lastName" },
            givenName: { dataKey: "firstName" }
        }
-    },
+    }
 ```
 
 
