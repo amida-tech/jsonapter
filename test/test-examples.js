@@ -265,34 +265,33 @@ describe('examples', function () {
         var template = {
             dataKey: "product",
             content: {
-                type: {constant: 'product'},
+                type: { constant: 'product' },
                 value: {}
             }
         };
 
-        var r0 = j2j.run(template, {product: "Ipad"});
+        var r0 = j2j.run(template, { product: "Ipad" });
         console.log(r0);
 
-        expect(r0).to.deep.equal({type: 'product', value: 'Ipad'}
-        );
+        expect(r0).to.deep.equal({ type: 'product', value: 'Ipad' });
     });
 
     it('Value of current element array - empty object', function () {
         var template = {
             dataKey: "products",
             content: {
-                type: {constant: 'product'},
+                type: { constant: 'product' },
                 value: {}
             }
         };
 
-        var r0 = j2j.run(template, {products: ["Ipad", "Ipod"]});
+        var r0 = j2j.run(template, { products: ["Ipad", "Ipod"] });
         console.log(r0);
 
         expect(r0).to.deep.equal(
             [
-                {type: 'product', value: 'Ipad'},
-                {type: 'product', value: 'Ipod'}
+                { type: 'product', value: 'Ipad' },
+                { type: 'product', value: 'Ipod' }
             ]
         );
     });
