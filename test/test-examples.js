@@ -373,8 +373,8 @@ describe('examples', function () {
             content: {
                 name: nameTemplate,
                 age: {
-                    value: function (input) {
-                        return 2015 - input;
+                    value: function (input, parent, params) {
+                        return params && params.year ? params.year - input : 2016 - input;
                     },
                     dataKey: 'birthYear'
                 }
@@ -385,11 +385,14 @@ describe('examples', function () {
             familyName: 'DOE',
             givenName: 'JOE',
             birthYear: 1980
-        });
+        }, {
+            year : 2016
+        }
+        );
         //console.log(r); // {name: ['DOE', 'JOE'], age: 35}
         expect(r).to.deep.equal({
             name: ['DOE', 'JOE'],
-            age: 35
+            age: 36
         });
     });
 
@@ -970,6 +973,48 @@ describe('examples', function () {
         });
     });
 
+    it('assign - with parent', function () {
+        var nameTemplate = {
+            content: {
+                last: {
+                    dataKey: 'familyName'
+                },
+                first: {
+                    dataKey: 'givenName'
+                }
+            }
+        };
+
+        var template = {
+            assign: [{
+                dataKey: "subscriber",
+                content: {
+                    id: function (input, parent) {
+                        return parent.subscriberNum +  input.givenName[0] + input.familyName;
+                    }
+                }
+            },
+            {
+                dataKey: "subscriber",
+                template: nameTemplate
+            }]
+        };
+
+        var r = j2j.run(template, {
+            subscriber: {
+                familyName: 'DOE',
+                givenName: 'JOE'
+            },
+            subscriberNum : "1234"
+        });
+        //console.log(r); // {id: 'JDOE', last: 'DOE', first: 'JOE'}
+        expect(r).to.deep.equal({
+            id: '1234JDOE',
+            last: 'DOE',
+            first: 'JOE'
+        });
+    });
+
     it('override - context', function () {
         var override = {
             context: {
@@ -1090,6 +1135,26 @@ describe('examples', function () {
             name: 'joe',
             title: 'mr'
         });
+        expect(r).to.deep.equal("MR JOE");
     });
 
+    it('case-value-4: value with parent with array', function () {
+        var template = {
+            content : {
+                name : {
+                    value: function (input, parent) {
+                        return parent.title.toUpperCase() + ' ' + input.toUpperCase();
+                    },
+                    dataKey: 'name'
+                }
+            }
+        };
+
+        var r = j2j.run(template, [{
+            name: 'joe',
+            title: 'mr'
+        }]);
+
+        expect(r).to.deep.equal([{name: "MR JOE"}]);
+    });
 });
