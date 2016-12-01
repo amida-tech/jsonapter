@@ -315,18 +315,18 @@ console.log(r); // JOE
 One can also use the parent inside the value function.  
 
 ```js
-        var template = {
-            value: function (input, parent) {
-                return parent.title.toUpperCase() + ' ' + input.toUpperCase();
-            },
-            dataKey: 'name'
-        };
+var template = {
+    value: function (input, parent) {
+        return parent.title.toUpperCase() + ' ' + input.toUpperCase();
+    },
+    dataKey: 'name'
+};
 
-        var r = j2j.run(template, {
-            name: 'joe',
-            title: 'mr'
-        });
-        console.log(r); // MR JOE
+var r = j2j.run(template, {
+    name: 'joe',
+    title: 'mr'
+});
+console.log(r); // MR JOE
 ```
 
 
