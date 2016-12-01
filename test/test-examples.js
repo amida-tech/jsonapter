@@ -386,9 +386,8 @@ describe('examples', function () {
             givenName: 'JOE',
             birthYear: 1980
         }, {
-            year : 2016
-        }
-        );
+            year: 2016
+        });
         //console.log(r); // {name: ['DOE', 'JOE'], age: 35}
         expect(r).to.deep.equal({
             name: ['DOE', 'JOE'],
@@ -987,17 +986,18 @@ describe('examples', function () {
 
         var template = {
             assign: [{
-                dataKey: "subscriber",
-                content: {
-                    id: function (input, parent) {
-                        return parent.subscriberNum +  input.givenName[0] + input.familyName;
+                    dataKey: "subscriber",
+                    content: {
+                        id: function (input, parent) {
+                            return parent.subscriberNum + input.givenName[0] + input.familyName;
+                        }
                     }
+                },
+                {
+                    dataKey: "subscriber",
+                    template: nameTemplate
                 }
-            },
-            {
-                dataKey: "subscriber",
-                template: nameTemplate
-            }]
+            ]
         };
 
         var r = j2j.run(template, {
@@ -1005,7 +1005,7 @@ describe('examples', function () {
                 familyName: 'DOE',
                 givenName: 'JOE'
             },
-            subscriberNum : "1234"
+            subscriberNum: "1234"
         });
         //console.log(r); // {id: 'JDOE', last: 'DOE', first: 'JOE'}
         expect(r).to.deep.equal({
@@ -1140,8 +1140,8 @@ describe('examples', function () {
 
     it('case-value-4: value with parent with array', function () {
         var template = {
-            content : {
-                name : {
+            content: {
+                name: {
                     value: function (input, parent) {
                         return parent.title.toUpperCase() + ' ' + input.toUpperCase();
                     },
@@ -1155,6 +1155,6 @@ describe('examples', function () {
             title: 'mr'
         }]);
 
-        expect(r).to.deep.equal([{name: "MR JOE"}]);
+        expect(r).to.deep.equal([{ name: "MR JOE" }]);
     });
 });
