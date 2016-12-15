@@ -771,7 +771,50 @@ describe('examples', function () {
         });
     });
 
-    it('default - 0', function () {
+    it('default - function', function () {
+        var template = {
+            content: {
+                last: {
+                    dataKey: 'familyName',
+                    default: function () {return 'unknown';}
+                },
+                first: {
+                    dataKey: 'givenName',
+                    default: function () {return 'unknown';}
+                }
+            }
+        };
+
+        var r0 = j2j.run(template, {
+            familyName: 'DOE',
+            givenName: 'JOE'
+        });
+        //console.log(r0); // {last: 'DOE', first: 'JOE'}
+        expect(r0).to.deep.equal({
+            last: 'DOE',
+            first: 'JOE'
+        });
+
+        var r1 = j2j.run(template, {
+            familyName: 'DOE'
+        });
+        //console.log(r1); // {last: 'DOE', first: 'unknown'}
+        expect(r1).to.deep.equal({
+            last: 'DOE',
+            first: 'unknown'
+        });
+
+        var r2 = j2j.run(template, {
+            givenName: 'JOE'
+        });
+        //console.log(r2); // {last: 'unknown', first: 'JOE'}
+        expect(r2).to.deep.equal({
+            last: 'unknown',
+            first: 'JOE'
+        });
+    });
+
+        it('default - 0', function () {
         var template = {
             content: {
                 last: {
@@ -813,7 +856,6 @@ describe('examples', function () {
             first: 'JOE'
         });
     });
-
     it('multiple - 0', function () {
         var template = {
             content: {
