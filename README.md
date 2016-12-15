@@ -799,7 +799,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
 <a name="default" />
 #### `default` rule
 
-This rule can be used to assign default values after templates are evaluated to be `null`
+This rule can be used to assign default values after templates are evaluated to be `null`. It can any value or a function.
 ```js
 var template = {
     content: {
