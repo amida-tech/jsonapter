@@ -799,7 +799,9 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
 <a name="default" />
 #### `default` rule
 
-This rule can be used to assign default values after templates are evaluated to be `null`. It can any value or a function.
+This rule can be used to assign default values after templates are evaluated to be `null`
+The `default` can be a `function` as well. 
+
 ```js
 var template = {
     content: {
@@ -809,7 +811,7 @@ var template = {
         },
         first: {
             dataKey: 'givenName',
-            default: 'unknown'
+            default: function() {return 'unknown';}
         }
     }
 };
@@ -830,6 +832,7 @@ var r2 = j2j.run(template, {
 });
 console.log(r2); // {last: 'unknown', first: 'JOE'}
 ```
+
 
 <a name="multiple" />
 #### `multiple` rule
