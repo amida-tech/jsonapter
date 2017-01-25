@@ -814,6 +814,31 @@ describe('examples', function () {
         });
     });
 
+    it('default - with function', function () {
+        var template = {
+            content: {
+                last: {
+                    dataKey: 'familyName',
+                    default: function() {return 'unknown';}
+                },
+                first: {
+                    dataKey: 'givenName',
+                    default: 'unknown'
+                }
+            }
+        };
+
+        var r = j2j.run(template, {
+            givenName: 'JOE'
+        });
+        //console.log(r2); // {last: 'unknown', first: 'JOE'}
+        expect(r).to.deep.equal({
+            last: 'unknown',
+            first: 'JOE'
+        });
+    });
+
+
     it('multiple - 0', function () {
         var template = {
             content: {
