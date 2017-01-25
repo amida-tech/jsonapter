@@ -819,7 +819,7 @@ describe('examples', function () {
             content: {
                 last: {
                     dataKey: 'familyName',
-                    default: function() {return 'unknown';}
+                    default: function () { return 'unknown'; }
                 },
                 first: {
                     dataKey: 'givenName',
@@ -837,7 +837,6 @@ describe('examples', function () {
             first: 'JOE'
         });
     });
-
 
     it('multiple - 0', function () {
         var template = {
