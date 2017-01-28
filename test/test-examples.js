@@ -838,6 +838,43 @@ describe('examples', function () {
         });
     });
 
+    it('default - with function with data', function () {
+        var template = {
+            content: {
+                last: {
+                    dataKey: 'familyName'
+                },
+                first: {
+                    dataKey: 'givenName'
+                },
+                title: {
+                    dataKey: 'title',
+                    default: function getTitle(input, parent, params) {
+                        if (parent.gender === 'M') {
+                            return "MR";
+                        } else if (parent.gender === 'F') {
+                            return "MS";
+                        } else {
+                            return null;
+                        }
+                    }
+                }
+                }
+        };
+
+        var r = j2j.run(template, {
+            givenName: 'JOE',
+            familyName: 'DOE',
+            gender: 'M'
+        });
+        //console.log(r2); // {last: 'DOE', first: 'JOE', title: 'MR'}
+        expect(r).to.deep.equal({
+            last: 'DOE',
+            first: 'JOE',
+            title: 'MR'
+        });
+    });
+
     it('multiple - 0', function () {
         var template = {
             content: {
