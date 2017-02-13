@@ -800,7 +800,8 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
 #### `default` rule
 
 This rule can be used to assign default values after templates are evaluated to be `null`
-The `default` can be a `function` as well. 
+The `default` can be a `function` as well. If `function` one can use the `input`, `parent`, and `params`
+just as `value` as `function`.
 
 ```js
 var template = {
@@ -812,6 +813,18 @@ var template = {
         first: {
             dataKey: 'givenName',
             default: function() {return 'unknown';}
+        },
+        title: {
+            dataKey: 'title',
+            default: function getTitle(input, parent, params) {
+                if (parent.gender === 'M') {
+                    return "MR";
+                } else if (parent.gender === 'F') {
+                    return "MS";
+                } else {
+                    return null;
+                }
+            }            
         }
     }
 };
@@ -820,17 +833,25 @@ var r0 = j2j.run(template, {
     familyName: 'DOE',
     givenName: 'JOE'
 });
-console.log(r0); // {last: 'DOE', first: 'JOE'}
+console.log(r0); // {last: 'DOE', first: 'JOE', title: null}
 
 var r1 = j2j.run(template, {
     familyName: 'DOE'
 });
-console.log(r1); // {last: 'DOE', first: 'unknown'}
+console.log(r1); // {last: 'DOE', first: 'unknown', title: null}
 
 var r2 = j2j.run(template, {
     givenName: 'JOE'
 });
-console.log(r2); // {last: 'unknown', first: 'JOE'}
+console.log(r2); // {last: 'unknown', first: 'JOE', title: null}
+
+var r3 = j2j.run(template, {
+    familyName: 'DOE'
+    givenName: 'JOE',
+    gender: 'M'
+});
+console.log(r3); // {last: 'unknown', first: 'JOE', title: 'MR'}
+
 ```
 
 
