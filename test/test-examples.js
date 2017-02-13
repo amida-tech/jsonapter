@@ -859,7 +859,7 @@ describe('examples', function () {
                         }
                     }
                 }
-                }
+            }
         };
 
         var r = j2j.run(template, {
