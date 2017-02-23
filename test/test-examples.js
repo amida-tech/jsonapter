@@ -3,6 +3,7 @@
 var chai = require('chai');
 
 var expect = chai.expect;
+var _ = require('lodash');
 
 describe('examples', function () {
     var bbj2j = require('../index');
@@ -443,8 +444,6 @@ describe('examples', function () {
     });
 
     it('existsWhen - 0', function () {
-        var _ = require('lodash');
-
         var template = {
             content: {
                 dest_a: {
@@ -489,8 +488,6 @@ describe('examples', function () {
     });
 
     it('existsWhen - 1', function () {
-        var _ = require('lodash');
-
         var template = {
             content: {
                 dest_a: {
@@ -531,9 +528,61 @@ describe('examples', function () {
         expect(r2.dest_b).to.equal('value_b');
     });
 
-    it('existsUnless - 0', function () {
-        var _ = require('lodash');
+    it('existsEither - 0', function () {
 
+        var template = {
+            content: {
+                dest_a: {
+                    dataKey: 'a'
+                },
+                dest_b: {
+                    dataKey: 'b'
+                }
+            },
+            existsEither: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
+        };
+
+        var r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b',
+            c: 'available'
+        });
+        expect(r0.dest_a).to.equal('value_a');
+        expect(r0.dest_b).to.equal('value_b');
+    });
+
+
+    it('existsEither - 1', function () {
+
+        var template = {
+            content: {
+                dest_a: {
+                    dataKey: 'a'
+                },
+                dest_b: {
+                    dataKey: 'b'
+                }
+            },
+            existsEither: ['c', 'd']
+        };
+
+        var r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b',
+            c: 'available'
+        });
+        expect(r0.dest_a).to.equal('value_a');
+        expect(r0.dest_b).to.equal('value_b');
+
+        r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        });
+        expect(r0).to.equal(null);
+    });
+
+
+    it('existsUnless - 0', function () {
         var template = {
             content: {
                 dest_a: {
@@ -588,8 +637,6 @@ describe('examples', function () {
     });
 
     it('existsUnless - 1', function () {
-        var _ = require('lodash');
-
         var template = {
             content: {
                 dest_a: {
