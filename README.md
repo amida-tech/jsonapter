@@ -649,6 +649,37 @@ var r2 = j2j.run(template, {
 console.log(r2.dest_a); // 'value_a'
 console.log(r2.dest_b); // 'value_b'
 ```
+<a name="existsEither" />
+#### `existsEither` rule
+
+This rule must be ab array of predicates. If all the predicates evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
+The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
+
+```js
+var _ = require('lodash');
+
+var template = {
+    content: {
+        dest_a: {
+            dataKey: 'a'
+        },
+        dest_b: {
+            dataKey: 'b'
+        },
+    },
+    existsEither: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
+};
+
+var r0 = j2j.run(template, {
+    a: 'value_a',
+    b: 'value_b',
+    c: 'available'
+});
+console.log(r0.dest_a); // 'value_a'
+console.log(r0.dest_b); // 'value_b'
+
+```
+
 
 <a name="existsUnless" />
 #### `existsUnless` rule
