@@ -573,6 +573,12 @@ describe('examples', function () {
         });
         expect(r0.dest_a).to.equal('value_a');
         expect(r0.dest_b).to.equal('value_b');
+
+        r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        });
+        expect(r0).to.equal(null);
     });
 
 
