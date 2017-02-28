@@ -67,6 +67,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`arrayContent`](#arrayContent)
 - [`constant`](#constant)
 - [`existsWhen`](#existsWhen)
+- [`existsEither`](#existsEither)
 - [`existsUnless`](#existsUnless)
 - [`dataTransform`](#dataTransform)
 - [`default`](#default)
