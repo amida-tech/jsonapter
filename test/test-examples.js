@@ -551,7 +551,6 @@ describe('examples', function () {
         expect(r0.dest_b).to.equal('value_b');
     });
 
-
     it('existsEither - 1', function () {
 
         var template = {
@@ -580,7 +579,6 @@ describe('examples', function () {
         });
         expect(r0).to.equal(null);
     });
-
 
     it('existsUnless - 0', function () {
         var template = {
