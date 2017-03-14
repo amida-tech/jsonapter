@@ -485,6 +485,20 @@ describe('examples', function () {
         });
         //console.log(r2); // null
         expect(r2).to.equal(null);
+
+        var r3 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        },
+        {
+            public: true,
+            c: 0
+        }
+        );
+        //console.log(r3.dest_a); // 'value_a'
+        //console.log(r3.dest_b); // 'value_b'
+        expect(r3.dest_a).to.equal('value_a');
+        expect(r3.dest_b).to.equal('value_b');
     });
 
     it('existsWhen - 1', function () {

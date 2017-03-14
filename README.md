@@ -568,6 +568,8 @@ console.log(r); // 'CONST'
 
 This rule must be a predicate or array of predicates. If the predicate evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
 The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
+The property can be in the input or in the params.  It is to be noted that this feature is little different from the value function which is supplied with params as well as input.
+For the value function the input and the params are available at the same time to the function. 
 
 ```js
 var _ = require('lodash');
@@ -607,7 +609,22 @@ var r2 = j2j.run(template, {
     b: 'value_b',
     c: 0
 });
-console.log(r2); // null
+console.log(r2); // null because public is not present
+
+
+var r3 = j2j.run(template, {
+    a: 'value_a',
+    b: 'value_b'
+},
+{
+    public: true,
+    c: 0
+}
+);
+
+//console.log(r3.dest_a); // 'value_a'
+//console.log(r3.dest_b); // 'value_b'
+
 ```
 
 If this rule is an array, each predicate in the array must evaluate to true
@@ -653,7 +670,7 @@ console.log(r2.dest_b); // 'value_b'
 <a name="existsEither" />
 #### `existsEither` rule
 
-This rule must be ab array of predicates. If all the predicates evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
+This rule must be an array of predicates. If all the predicates evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
 The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
 
 ```js

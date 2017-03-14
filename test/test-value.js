@@ -10,6 +10,7 @@ var case_2 = require('./test_cases/case-value-2');
 var case_3 = require('./test_cases/case-value-3');
 
 var expect = chai.expect;
+var _ = require('lodash');
 
 describe('value', function () {
     var engine = json2json.instance();
@@ -53,5 +54,4 @@ describe('value', function () {
             expect(actual).to.deep.equal(case_3.expecteds[i]);
         }
     });
-
 });
