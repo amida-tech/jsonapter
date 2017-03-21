@@ -485,6 +485,18 @@ describe('examples', function () {
         });
         //console.log(r2); // null
         expect(r2).to.equal(null);
+
+        var r3 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        }, {
+            public: true,
+            c: 0
+        });
+        //console.log(r3.dest_a); // 'value_a'
+        //console.log(r3.dest_b); // 'value_b'
+        expect(r3.dest_a).to.equal('value_a');
+        expect(r3.dest_b).to.equal('value_b');
     });
 
     it('existsWhen - 1', function () {
@@ -580,6 +592,36 @@ describe('examples', function () {
         expect(r0).to.equal(null);
     });
 
+    it('existsEither - 1 with params', function () {
+
+        var template = {
+            content: {
+                dest_a: {
+                    dataKey: 'a'
+                },
+                dest_b: {
+                    dataKey: 'b'
+                }
+            },
+            existsEither: ['c', 'd']
+        };
+
+        var r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        }, {
+            c: 'available'
+        });
+        expect(r0.dest_a).to.equal('value_a');
+        expect(r0.dest_b).to.equal('value_b');
+
+        r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        });
+        expect(r0).to.equal(null);
+    });
+
     it('existsUnless - 0', function () {
         var template = {
             content: {
@@ -650,6 +692,50 @@ describe('examples', function () {
         var r0 = j2j.run(template, {
             a: 'value_a',
             b: 'value_b',
+            c: 'available'
+        });
+        //console.log(r0.dest_a); // 'value_a'
+        //console.log(r0.dest_b); // 'value_b'
+        expect(r0.dest_a).to.equal('value_a');
+        expect(r0.dest_b).to.equal('value_b');
+
+        var r1 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b',
+            d: 'available'
+        });
+        //console.log(r1.dest_a); // 'value_a'
+        //console.log(r1.dest_b); // 'value_b'
+        expect(r1.dest_a).to.equal('value_a');
+        expect(r1.dest_b).to.equal('value_b');
+
+        var r2 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b',
+            c: 'available',
+            d: 'available'
+        });
+        //console.log(r2); // null
+        expect(r2).to.equal(null);
+    });
+
+    it('existsUnless - 1 with params', function () {
+        var template = {
+            content: {
+                dest_a: {
+                    dataKey: 'a'
+                },
+                dest_b: {
+                    dataKey: 'b'
+                }
+            },
+            existsUnless: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
+        };
+
+        var r0 = j2j.run(template, {
+            a: 'value_a',
+            b: 'value_b'
+        }, {
             c: 'available'
         });
         //console.log(r0.dest_a); // 'value_a'
