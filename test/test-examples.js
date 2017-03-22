@@ -200,6 +200,44 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
+    it('skip usage', function () {
+        var template = {
+            content: {
+                dest_a: {
+                    dataKey: 'a.c'
+                },
+                dest_b: {
+                    content: {
+                        dest_b0: {
+                            dataKey: 'b.c'
+                        },
+                        dest_b1: {
+                            dataKey: 'd'
+                        }
+                    },
+                    dataKey: 'a',
+                    skip: true
+                }
+            }
+        };
+
+        var input = {
+            a: {
+                b: {
+                    c: 'value_0'
+                },
+                c: 'value_2',
+                d: 'value_1'
+            }
+        };
+
+        var r = j2j.run(template, input);
+        //console.log(r); // {dest_a: 'value_2'}
+        expect(r).to.deep.equal({
+            dest_a: 'value_2'
+        });
+    });
+
     it('value - 0', function () {
         var template = {
             value: function (input) {

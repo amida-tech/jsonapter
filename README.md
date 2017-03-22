@@ -78,6 +78,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`ignoreDeep`](#ignoreDeep)
 - [`paramKey`](#paramKey)
 - [`template`](#template)
+- [`skip`](#skip)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -283,7 +284,29 @@ var r = j2j.run(template, {
 console.log(r); // 'VALUE'
 ```
 
+<a name="skip" />
+#### `skip` rule
 
+This rule is used to skip a template.
+
+```js
+var nestedTemplate = {
+    dataKey: 'b',
+    skip: true
+};
+
+var template = {
+    template: nestedTemplate,
+    dataKey: 'a'
+};
+
+var r = j2j.run(template, {
+    a: {
+        b: 'value'
+    }
+});
+console.log(r); // null
+```
 
 
 <a name="value" />
