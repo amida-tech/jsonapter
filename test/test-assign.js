@@ -1,7 +1,6 @@
 "use strict";
 
 var chai = require('chai');
-var debug = require('debug')('debug');
 
 var json2json = require('../index');
 
@@ -32,7 +31,6 @@ describe('assign', function () {
 
     it('case-assign-3: array', function () {
         var actual = engine.run(case_3.template, case_3.input);
-        debug(JSON.stringify(actual, null, 2));
         expect(actual).to.deep.equal(case_3.expected);
     });
 
