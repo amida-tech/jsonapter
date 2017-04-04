@@ -200,6 +200,68 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
+    it('dataKey - with indexKey', function () {
+        var jsonave = require('jsonave').instance;
+        var template = {
+            dataKey: jsonave('$.[1:]'),
+            content: {
+                cost: {dataKey: 'price'},
+                num: {indexKey: {}}
+            }
+        };
+
+        var r = j2j.run(template,
+            [{
+                price: 10
+            }, {
+                price: 20
+            }, {
+                price: 30
+            }]);
+
+        //console.log(r); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
+        expect(r).to.deep.equal([
+            {cost: 20, num: 0},
+            {cost: 30, num: 1}
+        ]);
+    });
+
+    it('dataKey - with indexKey within assign', function () {
+        var jsonave = require('jsonave').instance;
+        var template = {
+            dataKey: jsonave('$.[1:]'),
+            assign: [{
+                content: {
+                    cost: {dataKey: 'price'},
+                    num: {indexKey: {}}
+                }
+            }, {
+                content: {
+                    tax: {dataKey: 'tax'}
+                }
+             }
+            ]
+        };
+
+        var r = j2j.run(template,
+            [{
+                price: 10,
+                tax: 1.3
+            }, {
+                price: 20,
+                tax: 1.1
+            }, {
+                price: 30,
+                tax: 1.3
+            }]);
+
+        //console.log(r); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
+        expect(r).to.deep.equal([
+            {cost: 20, tax: 1.1, num: 0},
+            {cost: 30, tax: 1.3, num: 1}
+        ]);
+    });
+
     it('skip usage', function () {
         var template = {
             content: {
@@ -839,6 +901,62 @@ describe('examples', function () {
             birthYear: 1980
         });
         //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
+        expect(r).to.deep.equal({
+            name: {
+                last: 'DOE',
+                first: 'JOE'
+            },
+            age: 35
+        });
+    });
+
+    it.skip('dataTransform - with array input', function () {
+        var nameTemplate = {
+            content: {
+                last: {
+                    dataKey: 'familyName'
+                },
+                first: {
+                    dataKey: 'givenName'
+                }
+            }
+        };
+
+        var template = {
+            dataTransform: function (input) {
+                return input.person;
+            },
+            // dataKey: "person",
+            content: {
+                name: {
+                    template: nameTemplate,
+                    dataTransform: function (input) {
+                        return {
+                            familyName: input.lastName,
+                            givenName: input.firstName
+                        };
+                    }
+                },
+                age: {
+                    value: function (input) {
+                        return 2015 - input;
+                    },
+                    dataKey: 'birthYear'
+                }
+            }
+        };
+
+        var r = j2j.run(template, [
+            {
+                person : {
+                    lastName: 'DOE',
+                    firstName: 'JOE',
+                    birthYear: 1980
+                }
+            }
+        ]);
+        //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
+        console.log(JSON.stringify(r, null, 2));
         expect(r).to.deep.equal({
             name: {
                 last: 'DOE',
