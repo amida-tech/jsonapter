@@ -1,6 +1,6 @@
 {
     "name": "jsonapter",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Template based JSON to JSON transformer",
     "main": "./index.js",
     "directories": {
@@ -19,8 +19,7 @@
         "node": ">= 0.10.0"
     },
     "dependencies": {
-        "lodash": "^4.17.4",
-        "qs": "^6.4.0"
+        "lodash": "^4.17.4"
     },
     "devDependencies": {
         "chai": "^3.0.0",
