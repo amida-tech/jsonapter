@@ -200,14 +200,14 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
-    it('dataKey - with indexKey', function () {
+    it('dataKey - with arrayIndex no start', function () {
         var jsonave = require('jsonave').instance;
         var template = {
-            dataKey: jsonave('$.[1:]'),
-            content: {
-                cost: {dataKey: 'price'},
-                num: {indexKey: {}}
-            }
+                dataKey: jsonave('$.[1:]'),
+                content: {
+                    cost: {dataKey: 'price'},
+                    num: {arrayIndex: {}}
+                }
         };
 
         var r = j2j.run(template,
@@ -226,14 +226,14 @@ describe('examples', function () {
         ]);
     });
 
-    it('dataKey - with indexKey within assign', function () {
+    it('dataKey - with arrayIndex within assign', function () {
         var jsonave = require('jsonave').instance;
         var template = {
             dataKey: jsonave('$.[1:]'),
             assign: [{
                 content: {
                     cost: {dataKey: 'price'},
-                    num: {indexKey: {}}
+                    num: {arrayIndex: {}}
                 }
             }, {
                 content: {
@@ -259,6 +259,91 @@ describe('examples', function () {
         expect(r).to.deep.equal([
             {cost: 20, tax: 1.1, num: 0},
             {cost: 30, tax: 1.3, num: 1}
+        ]);
+    });
+
+    it('dataKey - with arrayIndex in a nested array with start', function () {
+        var template = {
+            content: {
+                name: {dataKey: 'name'},
+                costs: {
+                    dataKey: 'prices',
+                    content: {
+                        cost: {dataKey: "price"},
+                        num: {arrayIndex: {start: 1}}
+                    }
+                },
+                num: {arrayIndex: {start: 1}}
+            }
+        };
+
+        var r = j2j.run(template,
+            [{
+                name: "apple",
+                prices:
+                    [{
+                        price: 10
+                    },
+                        {
+                    price: 20
+                    }, {
+                        price: 30
+                    }
+                    ]
+            }, {
+                name: "peach",
+                prices:
+                    [{
+                        price: 20
+                    },
+                        {
+                            price: 40
+                        }, {
+                        price: 60
+                    }
+                    ]
+            }
+            ]
+        );
+
+        console.log(JSON.stringify(r, null, 2)); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
+        expect(r).to.deep.equal([
+            {
+                "name": "apple",
+                "costs": [
+                    {
+                        "cost": 10,
+                        "num": 1
+                    },
+                    {
+                        "cost": 20,
+                        "num": 2
+                    },
+                    {
+                        "cost": 30,
+                        "num": 3
+                    }
+                ],
+                "num": 1
+            },
+            {
+                "name": "peach",
+                "costs": [
+                    {
+                        "cost": 20,
+                        "num": 1
+                    },
+                    {
+                        "cost": 40,
+                        "num": 2
+                    },
+                    {
+                        "cost": 60,
+                        "num": 3
+                    }
+                ],
+                "num": 2
+            }
         ]);
     });
 
