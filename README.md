@@ -77,7 +77,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`assign`](#assign)
 - [`ignoreDeep`](#ignoreDeep)
 - [`paramKey`](#paramKey)
-- [`indexKey`](#indexKey)
+- [`arrayIndex`](#arrayIndex)
 - [`template`](#template)
 - [`skip`](#skip)
 
@@ -260,16 +260,17 @@ console.log(r0);
 }
 ```
 
-<a name="indexKey" />
-#### `indexKey` rule
-This rule is primarily used to get the index of the array.
+<a name="arrayIndex" />
+#### `arrayIndex` rule
+This rule is primarily used to get the index of the array. Optionally `start` can be given.
+Without `start` it will be zero based as usual.
 
 ```js
 
       var template = {
           content: {
               cost: {dataKey: 'price'},
-              num: {indexKey: {}}
+              num: {arrayIndex: {}}
           }
       };
 
@@ -281,6 +282,27 @@ This rule is primarily used to get the index of the array.
           }]);
 
 console.log(r); // // [{cost: 20, num: 0}, {cost: 30, num: 1}]
+```
+
+With `start` :
+
+```js
+
+      var template = {
+          content: {
+              cost: {dataKey: 'price'},
+              num: {arrayIndex: {start: 1}}
+          }
+      };
+
+      var r = j2j.run(template,
+          [{
+              price: 20
+          }, {
+              price: 30
+          }]);
+
+console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 ```
 
 
