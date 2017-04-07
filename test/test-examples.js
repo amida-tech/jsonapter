@@ -230,17 +230,19 @@ describe('examples', function () {
         var jsonave = require('jsonave').instance;
         var template = {
             dataKey: jsonave('$.[1:]'),
-            assign: [{
-                content: {
-                    cost: {dataKey: 'price'},
-                    num: {arrayIndex: {}}
+            template: {
+                assign: [{
+                    content: {
+                        cost: {dataKey: 'price'},
+                        num: {arrayIndex: {}}
+                    }
+                }, {
+                    content: {
+                        tax: {dataKey: 'tax'}
+                    }
                 }
-            }, {
-                content: {
-                    tax: {dataKey: 'tax'}
-                }
-             }
-            ]
+                ]
+            }
         };
 
         var r = j2j.run(template,
@@ -255,7 +257,7 @@ describe('examples', function () {
                 tax: 1.3
             }]);
 
-        //console.log(r); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
+        //console.log(r); // [{cost: 20, tax: 1.1, num: 0}, {cost: 30, tax: 1.3, num: 1}]
         expect(r).to.deep.equal([
             {cost: 20, tax: 1.1, num: 0},
             {cost: 30, tax: 1.3, num: 1}
