@@ -264,7 +264,7 @@ describe('examples', function () {
         ]);
     });
 
-    it('dataKey - with arrayIndex in a nested array with start', function () {
+    it('dataKey - with arrayIndex and size in a nested array with start', function () {
         var template = {
             content: {
                 name: {dataKey: 'name'},
@@ -272,81 +272,134 @@ describe('examples', function () {
                     dataKey: 'prices',
                     content: {
                         cost: {dataKey: "price"},
-                        num: {arrayIndex: {start: 1}}
+                        num: {arrayIndex: {start: 1}},
+                        total: {size: {}}
                     }
                 },
-                num: {arrayIndex: {start: 1}}
+                num: {arrayIndex: {start: 1}},
+                // total: {dataKey: 'name', size:{}}
+                total: {size: {}}
             }
         };
 
         var r = j2j.run(template,
             [{
                 name: "apple",
-                prices:
-                    [{
-                        price: 10
-                    },
-                        {
-                    price: 20
+                prices: [{
+                    price: 10
+                },
+                    {
+                        price: 20
                     }, {
                         price: 30
                     }
-                    ]
+                ]
             }, {
                 name: "peach",
-                prices:
-                    [{
-                        price: 20
-                    },
-                        {
-                            price: 40
-                        }, {
+                prices: [{
+                    price: 20
+                },
+                    {
+                        price: 40
+                    }, {
                         price: 60
                     }
-                    ]
+                ]
             }
             ]
         );
 
-        console.log(JSON.stringify(r, null, 2)); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
         expect(r).to.deep.equal([
             {
-                "name": "apple",
-                "costs": [
+                name: "apple",
+                costs: [
                     {
-                        "cost": 10,
-                        "num": 1
+                        cost: 10,
+                        num: 1,
+                        total: 3
                     },
                     {
-                        "cost": 20,
-                        "num": 2
+                        cost: 20,
+                        num: 2,
+                        total: 3
                     },
                     {
-                        "cost": 30,
-                        "num": 3
+                        cost: 30,
+                        num: 3,
+                        total: 3
                     }
                 ],
-                "num": 1
+                num: 1,
+                total: 2
             },
             {
-                "name": "peach",
-                "costs": [
+                name: "peach",
+                costs: [
                     {
-                        "cost": 20,
-                        "num": 1
+                        cost: 20,
+                        num: 1,
+                        total: 3
                     },
                     {
-                        "cost": 40,
-                        "num": 2
+                        cost: 40,
+                        num: 2,
+                        total: 3
                     },
                     {
-                        "cost": 60,
-                        "num": 3
+                        cost: 60,
+                        num: 3,
+                        total: 3
                     }
                 ],
-                "num": 2
+                num: 2,
+                total: 2
             }
         ]);
+    });
+
+    it('dataKey - with size of string', function () {
+        var template = {dataKey: 'name', size: {}};
+        var r = j2j.run(template, {
+            name: 'USA'
+        });
+        //console.log(r); // 3
+        expect(r).to.deep.equal(3);
+    });
+
+    it('dataKey - with size of string inside content', function () {
+        var template = {dataKey: 'name',
+            content : {
+                item: {},
+                size: {size: {}}
+            }
+        };
+        var r = j2j.run(template, {
+            name: 'USA'
+        });
+        //console.log(r); // {item: 'USA', size: 3}
+        expect(r).to.deep.equal({item: 'USA', size: 3});
+    });
+
+    it('dataKey - with size of array', function () {
+        var template = {dataKey: 'name', size: {}};
+        var r = j2j.run(template, {
+            name: ['USA', 'Cananda', 'Mexico']
+        });
+        //console.log(r); // 3
+        expect(r).to.deep.equal(3);
+    });
+
+    it('dataKey - with size of object', function () {
+        var template = {dataKey: 'countries', size: {}};
+        var r = j2j.run(template, {
+            countries: {
+                USA : {},
+                Cananda: {},
+                Mexico: {}
+            }
+        });
+        //console.log(r); // 3
+        expect(r).to.deep.equal(3);
     });
 
     it('skip usage', function () {

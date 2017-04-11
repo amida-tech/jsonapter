@@ -78,6 +78,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`ignoreDeep`](#ignoreDeep)
 - [`paramKey`](#paramKey)
 - [`arrayIndex`](#arrayIndex)
+- [`size`](#size)
 - [`template`](#template)
 - [`skip`](#skip)
 
@@ -303,6 +304,37 @@ With `start` :
           }]);
 
 console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
+```
+
+<a name="size" />
+This rule is primarily used to get the length of an array. It is also valid for length of string and object.
+
+```js
+      var template = {
+          content: {
+              cost: {dataKey: 'price'},
+              num: {arrayIndex: {}}
+              total: {size: {}}
+          }
+      };
+
+      var r = j2j.run(template,
+          [{
+              price: 20
+          }, {
+              price: 30
+          }]);
+
+console.log(r); // // [{cost: 20, total:2, num: 0}, {cost: 30, total:2, num: 1}]
+```
+
+```js
+        var template = {dataKey: 'name', size: {}};
+        var r = j2j.run(template, {
+            name: 'USA'
+        });
+        //console.log(r); // 3
+        expect(r).to.deep.equal(3);
 ```
 
 
