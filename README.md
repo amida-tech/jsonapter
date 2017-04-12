@@ -308,6 +308,7 @@ console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 
 <a name="size" />
 This rule is primarily used to get the length of an array. It is also valid for length of string and object.
+If it is in the context of an array the `size` will print the length of the array. If not it will check if it is in the same template with the `dataKey`.
 
 ```js
       var template = {
