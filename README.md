@@ -1253,9 +1253,9 @@ var sampleTemplate = {
     }
 };
 
-var r = j2j.run(sampleTemplate,sampleInput);
+var r = j2j.run(sampleTemplate, sampleInput);
 
-console.log(r); // {"firstName":"TIM","middleName":"JOE","lastName":"DOE","address":"","numbers":[],"groups":[1,2]}
+console.log(r); // {"firstName": "TIM", "middleName": "JOE", "lastName": "DOE", "address": "", "numbers": [], "groups": [1,2]}
 ```
 
 ## Overrides
@@ -1266,6 +1266,9 @@ Each engine instance `j2j` contains all the implementation details as functions 
 - `assign`
 - `firstOf`
 - `constant`
+- `arrayIndex`
+- `template`
+- `size`
 - `value`
 - `runForArray`
 - `evaluateDataKey`
@@ -1275,7 +1278,8 @@ Each engine instance `j2j` contains all the implementation details as functions 
 - `dataKeyArrayToInput`
 - `context`
 
-`run` is the entry point. `content`, `arrayContent`, `value`, `constant`, `firstOf` and `assign` are called action keys and listed in `actionKeys` array.  Only one of `actionKeys` can appear on a template on the same level.  None of these keys are designed to be overridden except `context`.  However you can add additional functionality by adding new data and action keys.
+`run` is the entry point. `content`, `arrayContent`, `value`, `size`, `template`, `arrayIndex`, `constant`, `firstOf` and `assign` are called action keys and listed in `actionKeys` array.
+Only one of `actionKeys` can appear on a template on the same level. None of these keys are designed to be overridden except `context`.  However you can add additional functionality by adding new data and action keys.
 
 ### Overrides To Existing Keys
 
