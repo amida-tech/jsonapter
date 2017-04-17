@@ -23,7 +23,7 @@ describe('templates with boolean, 0, or "" default values', function () {
         };
 
         var r = j2j.run(template, {
-            id: 'test',
+            id: 'test'
         });
 
         expect(r).to.deep.equal({
