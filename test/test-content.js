@@ -22,6 +22,15 @@ describe('content', function () {
         }
     });
 
+    it('case-content-0: basic default for array with function', function () {
+        var template = case_0.template;
+        template.default = function () {
+            return [];
+        };
+        var actual = engine.run(template, []);
+        expect(actual).to.deep.equal([]);
+    });
+
     it('case-content-1: array', function () {
         var template = case_1.template;
         var n = case_1.inputs.length;
