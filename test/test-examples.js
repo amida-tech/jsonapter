@@ -200,6 +200,37 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
+    it('dataKey - with output as object', function () {
+        var jsonave = require('jsonave').instance;
+        var template = {
+            content: {
+                items: {
+                    content: {
+                        cost: {dataKey: 'price'}
+                    }
+                }
+            },
+            output: 'object'
+        };
+
+        var r = j2j.run(template,
+            [{
+                price: 10
+            }, {
+                price: 20
+            }, {
+                price: 30
+            }]);
+
+        // console.log(r); // {items: [{cost: 10}, {cost: 20}, {cost: 30}]
+        expect(r).to.deep.equal({items: [
+            {cost: 10},
+            {cost: 20},
+            {cost: 30}
+        ]});
+    });
+
+
     it('dataKey - with arrayIndex no start', function () {
         var jsonave = require('jsonave').instance;
         var template = {
