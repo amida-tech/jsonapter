@@ -200,45 +200,14 @@ describe('examples', function () {
         expect(r2).to.equal(null);
     });
 
-    it('dataKey - with output as object', function () {
-        var jsonave = require('jsonave').instance;
-        var template = {
-            content: {
-                items: {
-                    content: {
-                        cost: {dataKey: 'price'}
-                    }
-                }
-            },
-            output: 'object'
-        };
-
-        var r = j2j.run(template,
-            [{
-                price: 10
-            }, {
-                price: 20
-            }, {
-                price: 30
-            }]);
-
-        // console.log(r); // {items: [{cost: 10}, {cost: 20}, {cost: 30}]
-        expect(r).to.deep.equal({items: [
-            {cost: 10},
-            {cost: 20},
-            {cost: 30}
-        ]});
-    });
-
-
     it('dataKey - with arrayIndex no start', function () {
         var jsonave = require('jsonave').instance;
         var template = {
-                dataKey: jsonave('$.[1:]'),
-                content: {
-                    cost: {dataKey: 'price'},
-                    num: {arrayIndex: {}}
-                }
+            dataKey: jsonave('$.[1:]'),
+            content: {
+                cost: {dataKey: 'price'},
+                num: {arrayIndex: {}}
+            }
         };
 
         var r = j2j.run(template,
@@ -1505,13 +1474,13 @@ describe('examples', function () {
 
         var template = {
             assign: [{
-                    dataKey: "subscriber",
-                    content: {
-                        id: function (input, parent) {
-                            return parent.subscriberNum + input.givenName[0] + input.familyName;
-                        }
+                dataKey: "subscriber",
+                content: {
+                    id: function (input, parent) {
+                        return parent.subscriberNum + input.givenName[0] + input.familyName;
                     }
-                },
+                }
+            },
                 {
                     dataKey: "subscriber",
                     template: nameTemplate
