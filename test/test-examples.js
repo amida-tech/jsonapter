@@ -203,11 +203,11 @@ describe('examples', function () {
     it('dataKey - with arrayIndex no start', function () {
         var jsonave = require('jsonave').instance;
         var template = {
-                dataKey: jsonave('$.[1:]'),
-                content: {
-                    cost: {dataKey: 'price'},
-                    num: {arrayIndex: {}}
-                }
+            dataKey: jsonave('$.[1:]'),
+            content: {
+                cost: {dataKey: 'price'},
+                num: {arrayIndex: {}}
+            }
         };
 
         var r = j2j.run(template,
@@ -1474,13 +1474,13 @@ describe('examples', function () {
 
         var template = {
             assign: [{
-                    dataKey: "subscriber",
-                    content: {
-                        id: function (input, parent) {
-                            return parent.subscriberNum + input.givenName[0] + input.familyName;
-                        }
+                dataKey: "subscriber",
+                content: {
+                    id: function (input, parent) {
+                        return parent.subscriberNum + input.givenName[0] + input.familyName;
                     }
-                },
+                }
+            },
                 {
                     dataKey: "subscriber",
                     template: nameTemplate
