@@ -72,10 +72,24 @@ describe('example error', function () {
         }
     });
 
-    it('firstOf is an array and cannot be empty', function () {
+    it('firstOf is an array', function () {
 
         var template = {
             firstOf: {}
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('firstOf is an array and cannot be empty', function () {
+
+        var template = {
+            firstOf: []
         };
 
         try {
