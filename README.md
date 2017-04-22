@@ -12,7 +12,7 @@ This library provides a template rules based formalism to describe JSON to JSON 
 
 ## Usage
 
-In its most basic form JSON to JSON transformations are described by a template object where `content` properties recursively describe destination keys, `dataKey` properties describe source keys, and `value` properties describe formatting
+In its most basic form JSON to JSON transformations are described by a template object where `content` properties recursively describe destination keys, [`dataKey`](#dataKey) properties describe source keys, and `value` properties describe formatting
 ```js
 var upper = function(input) {
 	return input ? input.toUpperCase() : null;
