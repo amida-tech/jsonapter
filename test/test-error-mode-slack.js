@@ -6,7 +6,7 @@ var expect = chai.expect;
 var _ = require('lodash');
 // var j2j = bbj2j.instance();
 var bbj2j = require('../index');
-var j2j = bbj2j.instance();
+var j2j = bbj2j.instance(null, null, {mode: ""});
 
 describe('example error', function () {
 
