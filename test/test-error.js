@@ -186,7 +186,7 @@ describe('example error', function () {
     it('dataKey cannot be an empty string', function () {
 
         var template = {
-            dataKey: ""
+            dataKey: ''
         };
 
         try {
@@ -228,7 +228,7 @@ describe('example error', function () {
     it('paramKey cannot be an empty string', function () {
 
         var template = {
-            paramKey: ""
+            paramKey: ''
         };
 
         try {
