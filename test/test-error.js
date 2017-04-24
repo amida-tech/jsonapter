@@ -183,10 +183,24 @@ describe('example error', function () {
         }
     });
 
+    it('dataKey cannot be an empty string', function () {
+
+        var template = {
+            dataKey: ""
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
     it('paramKey cannot be object', function () {
 
         var template = {
-            dataKey: {}
+            paramKey: {}
         };
 
         try {
@@ -200,7 +214,21 @@ describe('example error', function () {
     it('paramKey cannot be an array', function () {
 
         var template = {
-            dataKey: []
+            paramKey: []
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be an empty string', function () {
+
+        var template = {
+            paramKey: ""
         };
 
         try {
