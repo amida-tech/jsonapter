@@ -1,7 +1,7 @@
 jsonapter
 =====================
 
-Template Rules based JSON Transformer 
+Template Rules based JSON Transformer
 
 [![NPM](https://nodei.co/npm/jsonapter.png)](https://nodei.co/npm/jsonapter/)
 
@@ -12,7 +12,7 @@ This library provides a template rules based formalism to describe JSON to JSON 
 
 ## Usage
 
-In its most basic form JSON to JSON transformations are described by a template object where `content` properties recursively describe destination keys, `dataKey` properties describe source keys, and `value` properties describe formatting
+In its most basic form JSON to JSON transformations are described by a template object where [`content`](#content) properties recursively describe destination keys, [`dataKey`](#dataKey) properties describe source keys, and [`value`](#value) properties describe formatting
 ```js
 var upper = function(input) {
 	return input ? input.toUpperCase() : null;
@@ -58,6 +58,12 @@ var r = j2j.run(template, input);
 console.log(r); // {dest_a: 'value_2', dest_b: {dest_b0: 'VALUE_0', dest_b1: 'VALUE_1'}}
 ```
 
+## Error
+
+This library will throw `Error` in some cases, e.g. if `arrayContent` is provided but it is not an array or it is empty.
+This can be avoided by creating an `jsonapter` `instance` with `instance (null, null, {mode: null})`.
+By default, `mode` is `strict`.
+
 ## Standard Template Rules
 
 The following are the list of all keys that have special meaning in template objects
@@ -85,7 +91,7 @@ The following are the list of all keys that have special meaning in template obj
 <a name="dataKey" />
 #### `dataKey` rule
 
-This rule selects a particular property of input
+This rule selects a particular property of input. It can a `string`, `array` or `function`.
 ```js
 var template = {
     dataKey: 'a'
@@ -239,7 +245,7 @@ var r0 = j2j.run(template, {}, {
 });
 console.log(r0); // 1
 
-The paramKey value can be a object
+The `paramKey` value can be an object
 
 var template = {
     paramKey: 'paramObject'
@@ -416,7 +422,7 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
-One can also use the parent inside the value function.  
+One can also use the parent inside the value function.
 
 ```js
 var template = {
@@ -434,7 +440,7 @@ console.log(r); // MR JOE
 ```
 
 
-One can also use the params to the value function.  
+One can also use the params to the value function.
 ```js
 var template = {
     dataKey: 'name',
@@ -477,11 +483,11 @@ The `value` should not be used as a nested template. If `dataKey` is provided on
 ```js
 var template = {
     content: {
-         title: { 
-            dataKey: "gender", 
+         title: {
+            dataKey: "gender",
             value: {
-                M: 'Mr', 
-                F: 'Ms' 
+                M: 'Mr',
+                F: 'Ms'
              },
              lookup: true
             },
@@ -501,7 +507,8 @@ console.log(r); // { title: "Mr", name : "Joe" }
 <a name="content" />
 #### `content` rule
 
-This rule is used to describe a new object based on `input`.  The property keys of the `content` becomes the properties in the destination object.  The property values of `content` are primarily other templates
+This rule is used to describe a new object based on `input`.  The property keys of the `content` becomes the properties in the destination object.  The property values of `content` are primarily other templates.
+This is an object and cannot be empty.
 ```js
 var nameTemplate = {
     content: {
@@ -595,7 +602,9 @@ console.log(r); // {name: {last: 'DOE', first: 'JOE'}}
 <a name="arrayContent" />
 #### `arrayContent` rule
 
-This rule is similar to `content` but is used to desribe an array instead of an object based on `input`.  The array elements of the `arrayContent` becomes the array elements in the destination object.  Otherwise the array elements of the `arrayContent` work identically to properties of the `content`
+This rule is similar to `content` but is used to describe an `array` instead of an `object` based on `input`.  The array elements of the `arrayContent` becomes the array elements in the destination object.  Otherwise the array elements of the `arrayContent` work identically to properties of the `content`
+This is an array and cannot be empty.
+
 ```js
 var nameTemplate = {
     arrayContent: [{
@@ -670,9 +679,9 @@ console.log(r); // 'CONST'
 #### `existsWhen` rule
 
 This rule must be a predicate or array of predicates. If the predicate evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
-The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
+The predicate can be a `function`, an `object` or a simple `property`. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash.
 The property can be in the input or in the params.  It is to be noted that this feature is little different from the value function which is supplied with params as well as input.
-For the value function the input and the params are available at the same time to the function. 
+For the value function the input and the params are available at the same time to the `function`.
 
 ```js
 var _ = require('lodash');
@@ -774,7 +783,7 @@ console.log(r2.dest_b); // 'value_b'
 #### `existsEither` rule
 
 This rule must be an array of predicates. If all the predicates evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
-The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash. 
+The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash.
 
 ```js
 var _ = require('lodash');
@@ -894,7 +903,7 @@ console.log(r2); // null
 <a name="dataTransform" />
 #### `dataTransform` rule
 
-This rule transforms `input` so that existing templates can be reused. It can be a string, or a jsonapter template as well as a function.
+This rule transforms `input` so that existing templates can be reused. It can be a string, or an `object` (another jsonapter template) as well as a `function`.
 ```js
 var nameTemplate = {
     content: {
@@ -910,13 +919,13 @@ var nameTemplate = {
 var template = {
     content: {
         name: {
-        	value: nameTemplate,
-			dataTransform: function(input) {
-				return {
-					familyName: input.lastName,
-					givenName: input.firstName
-				};
-			}
+        	template: nameTemplate,
+			    dataTransform: function(input) {
+				    return {
+					    familyName: input.lastName,
+					    givenName: input.firstName
+				    };
+			  }
 		},
         age: {
             value: function (input) {
@@ -937,7 +946,7 @@ console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
 
 In the above example `dataTransform` can be a jsonapter template as shown below :
 ```js
-    
+
     dataTransform: {
         content: {
            familyName: { dataKey: "lastName" },
@@ -952,8 +961,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
 #### `default` rule
 
 This rule can be used to assign default values after templates are evaluated to be `null`
-The `default` can be a `function` as well. If `function` one can use the `input`, `parent`, and `params`
-just as `value` as `function`.
+The `default` can be a `function` as well. If `function` one can use the `input`, `parent`, and `params` just like `value` as `function`.
 
 ```js
 var template = {
@@ -976,7 +984,7 @@ var template = {
                 } else {
                     return null;
                 }
-            }            
+            }
         }
     }
 };
@@ -1134,7 +1142,8 @@ console.log(r1); // 'UNKNOWN'
 <a name="assign" />
 #### `assign` rule
 
-This rule accepts an array of other templates that generate object results and works similar to [lodash assign method](https://lodash.com/docs#assign).  `assign` rule is primarily used to reuse existing templates to obtain a new one
+This rule accepts an array of other templates that generate object results and works similar to [lodash assign method](https://lodash.com/docs#assign).  `assign` rule is primarily used to reuse existing templates to obtain a new one.
+This is an array and cannot be empty.
 ```js
 var nameTemplate = {
     content: {
@@ -1260,7 +1269,7 @@ console.log(r); // {"firstName": "TIM", "middleName": "JOE", "lastName": "DOE", 
 
 ## Overrides
 
-Each engine instance `j2j` contains all the implementation details as functions in the following keys: 
+Each engine instance `j2j` contains all the implementation details as functions in the following keys:
 - `run`
 - `content`
 - `assign`
