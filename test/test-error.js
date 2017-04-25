@@ -155,4 +155,116 @@ describe('example error', function () {
         }
     });
 
+    it('dataKey cannot be an object', function () {
+
+        var template = {
+            dataKey: {}
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('dataKey cannot be an empty array', function () {
+
+        var template = {
+            dataKey: []
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('dataKey cannot be an empty string', function () {
+
+        var template = {
+            dataKey: ''
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('dataKey cannot be null', function () {
+
+        var template = {
+            dataKey: null
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be object', function () {
+
+        var template = {
+            paramKey: {}
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be an array', function () {
+
+        var template = {
+            paramKey: []
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be an empty string', function () {
+
+        var template = {
+            paramKey: ''
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be an null', function () {
+
+        var template = {
+            paramKey: null
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
 });
