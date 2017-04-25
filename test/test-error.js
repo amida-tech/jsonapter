@@ -197,6 +197,20 @@ describe('example error', function () {
         }
     });
 
+    it('dataKey cannot be null', function () {
+
+        var template = {
+            dataKey: null
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
     it('paramKey cannot be object', function () {
 
         var template = {
@@ -229,6 +243,20 @@ describe('example error', function () {
 
         var template = {
             paramKey: ''
+        };
+
+        try {
+            var r = j2j.run(template, {});
+        } catch (err) {
+            console.log(err);
+            expect(err).to.exist;
+        }
+    });
+
+    it('paramKey cannot be an null', function () {
+
+        var template = {
+            paramKey: null
         };
 
         try {
