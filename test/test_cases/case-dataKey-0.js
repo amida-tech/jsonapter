@@ -3,7 +3,10 @@
 exports.template = {
     content: {
         name: {
-            dataKey: 'name'
+            dataKey: 'name',
+            output: function(input) {
+                return input.substring(0, 1).toUpperCase() + input.substring(1);
+            }
         },
         date: {
             dataKey: ['birthDate', 'recordedDate']
@@ -15,7 +18,7 @@ exports.inputs = [];
 exports.expecteds = [];
 
 exports.inputs[0] = {
-    name: 'Paws',
+    name: 'paws',
     birthDate: '2011-08-09'
 };
 

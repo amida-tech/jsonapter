@@ -7,6 +7,7 @@ var json2json = require('../index');
 var case_0 = require('./test_cases/case-content-0');
 var case_1 = require('./test_cases/case-content-1');
 var case_2 = require('./test_cases/case-content-2');
+var case_3 = require('./test_cases/case-content-3');
 
 var expect = chai.expect;
 
@@ -44,4 +45,18 @@ describe('content', function () {
         var actual = engine.run(case_2.template, case_2.input);
         expect(actual).to.deep.equal(case_2.expected);
     });
+
+    it('case-content-3: array output as object', function () {
+        var actual = engine.run(case_3.template, case_3.input);
+        console.log(actual);
+        expect(actual).to.deep.equal(case_3.expected);
+    });
+
+    it('case-content-3: array output as object', function () {
+        case_3.template.output = {type: "object"};
+        var actual = engine.run(case_3.template, case_3.input);
+        console.log(actual);
+        expect(actual).to.deep.equal(case_3.expected);
+    });
+
 });
