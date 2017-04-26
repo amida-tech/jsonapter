@@ -60,8 +60,8 @@ console.log(r); // {dest_a: 'value_2', dest_b: {dest_b0: 'VALUE_0', dest_b1: 'VA
 
 ## Error
 
-This library will throw `Error` in some cases, e.g. if `arrayContent` is provided but it is not an array or it is empty.
-This can be avoided by creating an `jsonapter` `instance` with `instance (null, null, {mode: null})`.
+This library will throw `Error` in some cases, e.g. if [`content`](#content) is provided but it is an array or it is empty.
+This can be avoided by creating an `jsonapter` `instance` with `options` as `instance (null, null, {mode: null})`.
 By default, `mode` is `strict`.
 
 ## Standard Template Rules
