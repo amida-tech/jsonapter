@@ -6,9 +6,11 @@ exports.template = {
         items: {
             content: {
                 dest_a: { dataKey: "a" },
-                dest_ar: { dataKey: "a", round: true },
+                dest_a1: { dataKey: "a", output: "string" },
+                dest_obj: { dataKey: "str", output: "object" },
                 visible: { dataKey: "hidden", output: {type: "boolean", reverse: true} },
                 visible1: { dataKey: "hidden1", reverse: true },
+                dest_ar: { dataKey: "a", round: true },
                 dest_af: { dataKey: "a", floor: true },
                 dest_ac: { dataKey: "a", ceiling: true },
                 dest_aStr: {dataKey: "a2", output: {type: "string", prefix: "Num ", suffix: "."}},
@@ -23,6 +25,8 @@ exports.template = {
 exports.input = [
     {
         a: 1.2,
+        dest_a1: "1.2",
+        str: '{"a": "sample"}',
         a1: "1",
         a2: 0,
         hidden: "true",
@@ -30,6 +34,7 @@ exports.input = [
     },
     {
         a: 2.6,
+        dest_a1: "2.6",
         a1: "2",
         a2: 2
     },
@@ -46,9 +51,13 @@ exports.expected = {
     items: [
         {
             dest_a: 1.2,
+            dest_a1: "1.2",
             dest_ar: 1,
             dest_af: 1,
             dest_ac: 2,
+            dest_obj: {
+              a: "sample"
+            },
             visible: false,
             visible1: false,
             dest_aStr: "Num 0.",
@@ -57,6 +66,7 @@ exports.expected = {
         },
         {
             dest_a: 2.6,
+            dest_a1: "2.6",
             dest_ar: 3,
             dest_af: 2,
             dest_ac: 3,
@@ -67,6 +77,7 @@ exports.expected = {
         },
         {
             dest_a: 3.5,
+            dest_a1: "3.5",
             dest_ar: 4,
             dest_af: 3,
             visible: true,

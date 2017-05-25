@@ -19,7 +19,6 @@ describe('output', function () {
     it('case-output-2: array output as object', function () {
         case_output.template.output = {type: "object"};
         var actual = engine.run(case_output.template, case_output.input);
-        console.log(actual);
         expect(actual).to.deep.equal(case_output.expected);
     });
 
