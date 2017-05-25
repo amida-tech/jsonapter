@@ -17,6 +17,7 @@ describe('dataKey', function () {
         var n = case_0.inputs.length;
         for (var i = 0; i < n; ++i) {
             var actual = engine.run(template, case_0.inputs[i]);
+            // console.log(JSON.stringify(actual, null, 2));
             expect(actual).to.deep.equal(case_0.expecteds[i]);
         }
     });
