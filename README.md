@@ -58,12 +58,6 @@ var r = j2j.run(template, input);
 console.log(r); // {dest_a: 'value_2', dest_b: {dest_b0: 'VALUE_0', dest_b1: 'VALUE_1'}}
 ```
 
-## Error
-
-This library will throw `Error` in some cases, e.g. if `arrayContent` is provided but it is not an array or it is empty.
-This can be avoided by creating an `jsonapter` `instance` with `instance (null, null, {mode: null})`.
-By default, `mode` is `strict`.
-
 ## Standard Template Rules
 
 The following are the list of all keys that have special meaning in template objects
@@ -87,6 +81,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`size`](#size)
 - [`template`](#template)
 - [`skip`](#skip)
+- [`output`](#output)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -370,35 +365,10 @@ var r = j2j.run(template, {
 console.log(r); // 'VALUE'
 ```
 
-<a name="skip" />
-#### `skip` rule
-
-This rule is used to skip a template.
-
-```js
-var nestedTemplate = {
-    dataKey: 'b',
-    skip: true
-};
-
-var template = {
-    template: nestedTemplate,
-    dataKey: 'a'
-};
-
-var r = j2j.run(template, {
-    a: {
-        b: 'value'
-    }
-});
-console.log(r); // null
-```
-
-
 <a name="value" />
 #### `value` rule
 
-This rule is primarily used to format `input` or `input` property that is selected by `dataKey`.  In this case it is assigned to a function
+This rule is primarily used to format `input` or `input` property that is selected by `dataKey`.  In this case it is a function
 ```js
 var template = {
     value: function (input) {
@@ -418,6 +388,7 @@ var template = {
         return input.toUpperCase();
     }
 };
+
 
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
@@ -503,6 +474,7 @@ console.log(r); // { title: "Mr", name : "Joe" }
 
 
 ```
+
 
 <a name="content" />
 #### `content` rule
@@ -1266,6 +1238,81 @@ var r = j2j.run(sampleTemplate, sampleInput);
 
 console.log(r); // {"firstName": "TIM", "middleName": "JOE", "lastName": "DOE", "address": "", "numbers": [], "groups": [1,2]}
 ```
+
+<a name="skip" />
+#### `skip` rule
+
+This rule is used to skip a template.
+
+```js
+var nestedTemplate = {
+    dataKey: 'b',
+    skip: true
+};
+
+var template = {
+    template: nestedTemplate,
+    dataKey: 'a'
+};
+
+var r = j2j.run(template, {
+    a: {
+        b: 'value'
+    }
+});
+console.log(r); // null
+```
+
+
+<a name="output" />
+#### `output` rule
+
+The `output` tag is there to modify final result. It can be either `string`, `boolean`, `number`, `object` or `function`.
+When it is a function it's first argument is the `result` of the template as shown below :
+
+```js
+
+    {
+            dataKey: 'name',
+            output: function(result, input, parent, params) {
+                // return some other result
+        }
+     }
+
+```
+
+It is almost similar to the `value` as `function` but unlike `value` it is not an action key.
+The `value` tag cannot be present along with other actionKeys e.g `content`, `arrayContent` etc.
+The `output` tag can be specified by simply saying `{output: string}` or `output: {type: string}`.
+With the second option more features are available e.g. `substring`,  `upperCase`, etc.
+
+If the output of the template is a string then the output tag can be omitted and the string options can be used. 
+Similarly if output is boolean then boolean option can be used without using the output tag.
+
+If output is a string then these options are available e.g `split`, `substring`, `prefix`, `` `upperCase`, `lowerCase`, etc.
+Here is the complete list of all available options for all types. 
+
+| Type      |   options    |   Format
+----------- |:------------:|:------------------------------
+| string    |   split      |  `split`: {`separator`(optional): "-"}, if no separator it will be white space
+| string    |   trim       |  `trim`: true
+| string    |   substring  |  `substring`: {start(optional): 1, end(optional): 5}
+| string    |   upperCase  |  `upperCase`: true
+| string    |   lowerCase  |  `lowerCase`: true
+| string    |   prefix     |  `prefix`: "a"
+| string    |   suffix     |  `suffix`: "b"
+| boolean   |   reverse    |  `reverse`(optional): true
+| number    |   floor      |  `floor`(optional): true
+| number    |   ceiling    |  `ceiling`(optional): true
+| number    |   round      |  `round`(optional): true
+
+
+## Errors
+
+This library will throw `Error` in some cases, e.g. if [`content`](#content) is provided but it is an array or it is empty.
+This can be avoided by creating a `jsonapter` `instance` with `options` as `instance (null, null, {mode: null})`.
+By default, `mode` is `strict`.
+
 
 ## Overrides
 
