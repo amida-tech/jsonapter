@@ -239,8 +239,11 @@ var r0 = j2j.run(template, {}, {
     a: 1
 });
 console.log(r0); // 1
+```
 
 The `paramKey` value can be an object
+
+```js
 
 var template = {
     paramKey: 'paramObject'
@@ -315,7 +318,7 @@ If it is in the context of an array the `size` will print the length of the arra
       var template = {
           content: {
               cost: {dataKey: 'price'},
-              num: {arrayIndex: {}}
+              num: {arrayIndex: {}},
               total: {size: {}}
           }
       };
@@ -921,7 +924,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
 
     dataTransform: {
         content: {
-           familyName: { dataKey: "lastName" },
+           familyName: { dataKey: "lastName" }
            givenName: { dataKey: "firstName" }
        }
     }
@@ -978,7 +981,7 @@ var r2 = j2j.run(template, {
 console.log(r2); // {last: 'unknown', first: 'JOE', title: null}
 
 var r3 = j2j.run(template, {
-    familyName: 'DOE'
+    familyName: 'DOE',
     givenName: 'JOE',
     gender: 'M'
 });
@@ -995,7 +998,7 @@ This rule can be used to change a template evaluted value into a one element arr
 var template = {
     content: {
         last: {
-            dataKey: 'familyName',
+            dataKey: 'familyName'
         },
         given: {
             dataKey: 'givenName',
@@ -1272,13 +1275,12 @@ When it is a function it's first argument is the `result` of the template as sho
 
 ```js
 
-    {
+var template = {
             dataKey: 'name',
             output: function(result, input, parent, params) {
                 // return some other result
-        }
+            }
      }
-
 ```
 
 It is almost similar to the `value` as `function` but unlike `value` it is not an action key.
@@ -1383,7 +1385,7 @@ The functionality of templates can be customized by adding additional action key
 var meds = {
     'aspirin': {
         id: 1
-    },
+    }
 };
 
 var override = {
