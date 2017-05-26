@@ -27,7 +27,6 @@ exports.template = {
 exports.input = [
     {
         a: 1.2,
-        dest_a1: "1.2",
         str: '{"a": "sample"}',
         a1: "1",
         count: 5,

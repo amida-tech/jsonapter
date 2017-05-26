@@ -12,6 +12,7 @@ exports.template = {
         city: {dataKey: "city", trim: true, lowerCase: true},
         state: {dataKey: "state", trim: true, upperCase: true},
         child: {dataKey: "adult", reverse: true},
+        salary: {dataKey: "salary", output: "number"},
         date: {
             dataKey: ['birthDate', 'recordedDate']
         },
@@ -30,7 +31,8 @@ exports.inputs[0] = {
     city: 'DALLAS',
     state: 'tx',
     birthDate: '2011-08-09',
-    adult: true
+    adult: true,
+    salary: "500"
 };
 
 exports.expecteds[0] = {
@@ -40,7 +42,8 @@ exports.expecteds[0] = {
     state: 'TX',
     child: false,
     date: '2011-08-09',
-    year: '2011'
+    year: '2011',
+    salary: 500
 };
 
 exports.inputs[1] = {
