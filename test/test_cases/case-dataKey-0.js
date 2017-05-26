@@ -9,8 +9,8 @@ exports.template = {
             }
         },
         nickNames: {dataKey: "nickNames", split: {separator: /\s+/}},
-        city: {dataKey: "city", lowerCase: true},
-        state: {dataKey: "state", upperCase: true},
+        city: {dataKey: "city", trim: true, lowerCase: true},
+        state: {dataKey: "state", trim: true, upperCase: true},
         child: {dataKey: "adult", reverse: true},
         date: {
             dataKey: ['birthDate', 'recordedDate']

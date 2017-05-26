@@ -8,7 +8,9 @@ exports.template = {
                 dest_a: { dataKey: "a" },
                 dest_a1: { dataKey: "a", output: "string" },
                 dest_obj: { dataKey: "str", output: "object" },
+                empty: { dataKey: "count", output: {type: "boolean", reverse: true} },
                 visible: { dataKey: "hidden", output: {type: "boolean", reverse: true} },
+                ignore: { dataKey: "mark", output: {type: "boolean", reverse: true} },
                 visible1: { dataKey: "hidden1", reverse: true },
                 dest_ar: { dataKey: "a", round: true },
                 dest_af: { dataKey: "a", floor: true },
@@ -28,8 +30,10 @@ exports.input = [
         dest_a1: "1.2",
         str: '{"a": "sample"}',
         a1: "1",
+        count: 5,
         a2: 0,
         hidden: "true",
+        mark: "false",
         hidden1: true
     },
     {
@@ -53,6 +57,7 @@ exports.expected = {
             dest_a: 1.2,
             dest_a1: "1.2",
             dest_ar: 1,
+            ignore: true,
             dest_af: 1,
             dest_ac: 2,
             dest_obj: {
@@ -60,6 +65,7 @@ exports.expected = {
             },
             visible: false,
             visible1: false,
+            empty: false,
             dest_aStr: "Num 0.",
             dest_bStr: "Num 1.",
             dest_cStr: "1"
@@ -70,7 +76,6 @@ exports.expected = {
             dest_ar: 3,
             dest_af: 2,
             dest_ac: 3,
-            visible: true,
             dest_aStr: "Num 2.",
             dest_bStr: "Num 2.",
             dest_cStr: "1"
@@ -80,7 +85,6 @@ exports.expected = {
             dest_a1: "3.5",
             dest_ar: 4,
             dest_af: 3,
-            visible: true,
             visible1: true,
             dest_ac: 4,
             dest_aStr: "Num 3.",
