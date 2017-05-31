@@ -479,6 +479,7 @@ console.log(r); // { title: "Mr", name : "Joe" }
 ```
 
 
+
 <a name="content" />
 #### `content` rule
 
@@ -1285,13 +1286,13 @@ var template = {
 
 It is almost similar to the `value` as `function` but unlike `value` it is not an action key.
 The `value` tag cannot be present along with other actionKeys e.g `content`, `arrayContent` etc.
-The `output` tag can be specified by simply saying `{output: string}` or `output: {type: string}`.
+The `output` tag can be specified by simply including `{output: string}` or `output: {type: string}`.
 With the second option more features are available e.g. `substring`,  `upperCase`, etc.
 
-If the output of the template is a string then the output tag can be omitted and the string options can be used. 
-Similarly if output is boolean then boolean option can be used without using the output tag.
+If the result of the template is a string then the output tag can be omitted and the string options can be used. 
+Similarly if result of the template is boolean then boolean option can be used without using the output tag.
 
-If output is a string then these options are available e.g `split`, `substring`, `prefix`, `` `upperCase`, `lowerCase`, etc.
+If output is string then these options are available e.g `split`, `substring`, `prefix`, `upperCase`, `lowerCase`, etc.
 Here is the complete list of all available options for all types. 
 
 | Type      |   options    |   Format
@@ -1303,10 +1304,10 @@ Here is the complete list of all available options for all types.
 | string    |   lowerCase  |  `lowerCase`: true
 | string    |   prefix     |  `prefix`: "a"
 | string    |   suffix     |  `suffix`: "b"
-| boolean   |   reverse    |  `reverse`(optional): true
-| number    |   floor      |  `floor`(optional): true
-| number    |   ceiling    |  `ceiling`(optional): true
-| number    |   round      |  `round`(optional): true
+| boolean   |   reverse    |  `reverse`: true
+| number    |   floor      |  `floor`: true
+| number    |   ceiling    |  `ceiling`: true
+| number    |   round      |  `round`: true
 
 
 ## Errors
