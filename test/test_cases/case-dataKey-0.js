@@ -18,7 +18,13 @@ exports.template = {
         },
         year: {
             dataKey: ['birthDate', 'recordedDate'], substring: {start: 0, end: 4}
-        }
+        },
+        occurred: {timeStamp: {serialize: false}},
+        occurred1: {timeStamp: {}},
+        occurred2: {timeStamp: {serialize: function (value) {
+            return 'Date:' + value.toJSON();
+        }}},
+        occurred3: {timeStamp: {serialize: false}, output: "string"}
     }
 };
 
