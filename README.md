@@ -312,6 +312,7 @@ console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 ```
 
 <a name="timeStamp" />
+#### `timeStamp` rule
 
 This rule is  used to get timeStamp as `{occurred: {timeStamp: {serialize: true}}`. 
 It will produce an output `occurred: "2017-06-12T22:54:39.502Z"`. 
