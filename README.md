@@ -79,6 +79,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`paramKey`](#paramKey)
 - [`arrayIndex`](#arrayIndex)
 - [`size`](#size)
+- [`timeStamp`](#timeStamp)
 - [`template`](#template)
 - [`skip`](#skip)
 - [`output`](#output)
@@ -310,6 +311,13 @@ With `start` :
 console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 ```
 
+<a name="timeStamp" />
+
+This rule is  used to get timeStamp as `{occurred: {timeStamp: {serialize: true}}`. 
+It will produce an output `occurred: "2017-06-12T22:54:39.502Z"`. 
+The `serialize` option is `true` by default. If it is `false` it will keep it a `Date` object.
+If the timeStamp tag is invoked multiple times in the same template the output will be same. 
+
 <a name="size" />
 This rule is primarily used to get the length of an array. It is also valid for length of string and object.
 If it is in the context of an array the `size` will print the length of the array. If not it will check if it is in the same template with the `dataKey`.
@@ -467,7 +475,7 @@ var template = {
             },
          name : { dataKey: "name" }
     }
-}
+};
 
 var input = {name: 'Joe', gender: 'M'};
 
@@ -485,6 +493,7 @@ console.log(r); // { title: "Mr", name : "Joe" }
 
 This rule is used to describe a new object based on `input`.  The property keys of the `content` becomes the properties in the destination object.  The property values of `content` are primarily other templates.
 This is an object and cannot be empty.
+
 ```js
 var nameTemplate = {
     content: {
@@ -670,7 +679,7 @@ var template = {
         dest_b: {
             dataKey: 'b',
             existsWhen: _.partialRight(_.has, 'c')
-        },
+        }
     },
     existsWhen: 'public'
 };
@@ -727,7 +736,7 @@ var template = {
         },
         dest_b: {
             dataKey: 'b'
-        },
+        }
     },
     existsWhen: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
 };
@@ -771,7 +780,7 @@ var template = {
         },
         dest_b: {
             dataKey: 'b'
-        },
+        }
     },
     existsEither: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
 };
@@ -803,7 +812,7 @@ var template = {
         dest_b: {
             dataKey: 'b',
             existsUnless: _.partialRight(_.has, 'c')
-        },
+        }
     },
     existsUnless: function (input) {
         return input && input.private;
@@ -846,7 +855,7 @@ var template = {
         },
         dest_b: {
             dataKey: 'b'
-        },
+        }
     },
     existsUnless: [_.partialRight(_.has, 'c'), _.partialRight(_.has, 'd')]
 };

@@ -19,7 +19,15 @@ describe('dataKey', function () {
         var n = case_0.inputs.length;
         for (var i = 0; i < n; ++i) {
             var actual = engine.run(template, case_0.inputs[i]);
-            // console.log(JSON.stringify(actual, null, 2));
+            console.log(JSON.stringify(actual, null, 2));
+
+            expect(actual.occurred).to.be.not.null;
+            expect(actual.occurred1).to.be.not.null;
+            expect(actual.occurred2).to.be.not.null;
+            expect(actual.occurred3).to.be.not.null;
+            actual.occurred = actual.occurred1 = actual.occurred2 = actual.occurred3 = undefined;
+            actual = JSON.parse(JSON.stringify(actual));
+
             expect(actual).to.deep.equal(case_0.expecteds[i]);
         }
     });
@@ -47,6 +55,7 @@ describe('dataKey', function () {
         var n = case_3.inputs.length;
         for (var i = 0; i < n; ++i) {
             var actual = engine.run(template, case_3.inputs[i]);
+            // console.log(JSON.stringify(actual, null, 2));
             expect(actual).to.deep.equal(case_3.expecteds[i]);
         }
     });
