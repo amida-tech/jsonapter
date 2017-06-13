@@ -1,6 +1,6 @@
 {
     "name": "jsonapter",
-    "version": "1.0.18",
+    "version": "1.0.19",
     "description": "Template based JSON to JSON transformer",
     "main": "./index.js",
     "directories": {
