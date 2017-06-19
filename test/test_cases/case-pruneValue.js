@@ -82,32 +82,32 @@ exports.templateForDefaultValues = {
 };
 
 exports.outputForEmptyStringPresence = {
-    "address": "",
-    "familyName": "",
-    "firstName": "TIM",
-    "groups": [1, 2],
-    "lastName": "DOE",
-    "middleName": "JOE"
+    address: "",
+    familyName: "",
+    firstName: "TIM",
+    groups: [1, 2],
+    lastName: "DOE",
+    middleName: "JOE"
 };
 exports.outputForDefaultValues = {
-    "address": "",
-    "age": NaN,
-    "familyName": "",
-    "firstName": "TIM",
-    "friends": [],
-    "groups": [1, 2],
-    "lastName": "DOE",
-    "middleName": "JOE",
-    "numbers": []
+    address: "",
+    age: NaN,
+    familyName: "",
+    firstName: "TIM",
+    friends: [],
+    groups: [1, 2],
+    lastName: "DOE",
+    middleName: "JOE",
+    numbers: []
 };
 
 exports.outputForNaNPresence = {
 
-    "age": NaN,
-    "firstName": "TIM",
-    "groups": [1, 2],
-    "lastName": "DOE",
-    "middleName": "JOE"
+    age: NaN,
+    firstName: "TIM",
+    groups: [1, 2],
+    lastName: "DOE",
+    middleName: "JOE"
 };
 
 exports.input = {
@@ -267,7 +267,7 @@ exports.template = {
                     dataKey: "numbers",
                     default: "1"
                 },
-                "dotValue": {
+                dotValue: {
                     dataKey: "h.a1"
                 }
             }
@@ -287,7 +287,7 @@ exports.template = {
             arrayContent: [{
                 arrayContent: [{
                     dataKey: "a.i",
-                    value: weatherTemplate
+                    template: weatherTemplate
                 }],
                 default: []
             }]
@@ -297,48 +297,48 @@ exports.template = {
 };
 
 exports.expectedWithPruneOptions = {
-    "dest_a1": "i am key c1",
-    "dest_a6": true,
-    "dest_a7": false,
-    "dest_b": {
-        "dest_b0": "value a.e",
-        "dest_b1": "I am Default for NaN"
+    dest_a1: "i am key c1",
+    dest_a6: true,
+    dest_a7: false,
+    dest_b: {
+        dest_b0: "value a.e",
+        dest_b1: "I am Default for NaN"
     },
-    "dest_e": "value a.e",
-    "dest_f": [{
-        "firstName": "sampleFirstName"
+    dest_e: "value a.e",
+    dest_f: [{
+        firstName: "sampleFirstName"
     }, {
-        "firstName": "sampleFirstName",
-        "group": [1, 3]
+        firstName: "sampleFirstName",
+        group: [1, 3]
     }, {
-        "firstName": "sampleFirstName"
+        firstName: "sampleFirstName"
     }],
-    "dest_g": {
-        "firstName": "sampleLastName",
-        "Numbers": "1"
+    dest_g: {
+        firstName: "sampleLastName",
+        Numbers: "1"
     },
-    "dest_h": {
+    dest_h: {
         "dest.h1.firstName": "sampleFirstName"
     },
     dest_i: [{
-        "city": "Dallas",
-        "temperature": "70F",
-        "weather": "sunny",
-        "days": [
+        city: "Dallas",
+        temperature: "70F",
+        weather: "sunny",
+        days: [
             "mon",
             "tue",
             "wed"
         ]
     }, {
-        "days": [
+        days: [
             "thr",
             "fri",
             "sat"
         ]
     }, {
-        "city": "Irving",
-        "temperature": "70F",
-        "weather": "sunny"
+        city: "Irving",
+        temperature: "70F",
+        weather: "sunny"
     }]
 };
 
@@ -375,79 +375,79 @@ exports.expectedWithOutPruneOptions = {
         "dest.h1.firstName": "sampleFirstName",
         "dest.h2.lastName": ""
     },
-    "dest_i": [{
-        "city": "Dallas",
-        "days": [
+    dest_i: [{
+        city: "Dallas",
+        days: [
             "mon",
             "tue",
             "wed"
         ],
-        "temperature": "70F",
-        "weather": "sunny"
+        temperature: "70F",
+        weather: "sunny"
     }, {
-        "days": [
+        days: [
             "thr",
             "fri",
             "sat"
         ],
-        "temperature": NaN,
-        "weather": ""
+        temperature: NaN,
+        weather: ""
     }, {
-        "city": "Irving",
-        "days": [],
-        "temperature": "70F",
-        "weather": "sunny"
+        city: "Irving",
+        days: [],
+        temperature: "70F",
+        weather: "sunny"
     }]
 };
 
 exports.expectedWithEmptyArrays = {
-    "dest_a1": "i am key c1",
-    "dest_a4": [],
-    "dest_a6": true,
-    "dest_a7": false,
-    "dest_b": {
-        "dest_b0": "value a.e",
-        "dest_b1": "I am Default for NaN"
+    dest_a1: "i am key c1",
+    dest_a4: [],
+    dest_a6: true,
+    dest_a7: false,
+    dest_b: {
+        dest_b0: "value a.e",
+        dest_b1: "I am Default for NaN"
     },
-    "dest_e": "value a.e",
-    "dest_f": [{
-        "firstName": "sampleFirstName",
-        "group": []
+    dest_e: "value a.e",
+    dest_f: [{
+        firstName: "sampleFirstName",
+        group: []
     }, {
-        "firstName": "sampleFirstName",
-        "group": [1,
+        firstName: "sampleFirstName",
+        group: [1,
             3
         ]
     }, {
-        "firstName": "sampleFirstName",
-        "group": []
+        firstName: "sampleFirstName",
+        group: []
     }],
-    "dest_g": {
-        "firstName": "sampleLastName",
-        "Numbers": "1"
+    dest_g: {
+        firstName: "sampleLastName",
+        Numbers: "1"
     },
-    "dest_h": {
+    dest_h: {
         "dest.h1.firstName": "sampleFirstName"
     },
-    "dest_i": [{
-        "city": "Dallas",
-        "temperature": "70F",
-        "weather": "sunny",
-        "days": [
+    dest_i: [{
+        city: "Dallas",
+        temperature: "70F",
+        weather: "sunny",
+        days: [
             "mon",
             "tue",
             "wed"
         ]
     }, {
-        "days": [
+        days: [
             "thr",
             "fri",
             "sat"
         ]
     }, {
-        "city": "Irving",
-        "days": [],
-        "temperature": "70F",
-        "weather": "sunny"
+        city: "Irving",
+        days: [],
+        temperature: "70F",
+        weather: "sunny"
     }]
 };

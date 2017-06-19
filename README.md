@@ -317,6 +317,7 @@ console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 This rule is  used to get timeStamp as `{occurred: {timeStamp: {serialize: true}}`. 
 It will produce an output `occurred: "2017-06-12T22:54:39.502Z"`. 
 The `serialize` option is `true` by default. If it is `false` it will keep it a `Date` object.
+The `serialize` option can be a `function` as well which one can use to formar the `Date` object.
 If the timeStamp tag is invoked multiple times in the same template the output will be same. 
 
 <a name="size" />
