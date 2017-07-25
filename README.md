@@ -488,6 +488,25 @@ console.log(r); // { title: "Mr", name : "Joe" }
 
 ```
 
+One can also pass extra parameter to the `value` function. For this to work one has to pass `params` in the template:
+The `value` function needs to written with `extraParams` as the last parameter.
+
+```js
+
+var template = {
+    value: function (input, parent, params, extraParams) {
+        return (input > extraParams) ? input - extraParams: null;
+    },
+    params: 50
+};
+
+var input = [50, 51, 52];
+
+var r = j2j.run(template, input);
+
+console.log(r); // [1, 2]
+
+```
 
 
 <a name="content" />
