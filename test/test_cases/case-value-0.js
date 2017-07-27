@@ -6,9 +6,10 @@ var nestedTemplate = {
             dataKey: 'detail.name'
         },
         n_prop_b: {
-            value: function (input) {
-                return input * 4;
+            value: function (input, parent, params, extraParams) {
+                return input * extraParams.multiplier;
             },
+            params: {multiplier: 4},
             dataKey: 'detail.values'
         },
         n_prop_c: {
@@ -24,9 +25,11 @@ exports.template = {
             value: 'TITLE'
         },
         prop_a: {
-            value: function (status, parent) {
-                return parent.stage === 'Final' && status === 'Resolved';
+            value: function (status, parent, params, extraParams) {
+                console.log('extraParams '+ extraParams);
+                return parent.stage === 'Final' && status === 'Resolved' && extraParams;
             },
+            params: true,
             dataKey: 'status'
         },
         prop_b: {

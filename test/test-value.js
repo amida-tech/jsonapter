@@ -8,6 +8,7 @@ var case_0 = require('./test_cases/case-value-0');
 var case_1 = require('./test_cases/case-value-1');
 var case_2 = require('./test_cases/case-value-2');
 var case_3 = require('./test_cases/case-value-3');
+var case_4 = require('./test_cases/case-value-4');
 
 var expect = chai.expect;
 var _ = require('lodash');
@@ -36,8 +37,11 @@ describe('value', function () {
     });
 
     it('case-value-1: null array', function () {
-        var actual = engine.run(case_1.template, case_1.input);
-        expect(actual).to.deep.equal(case_1.expected);
+        var n = case_1.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(case_1.template, case_1.inputs[i]);
+            expect(actual).to.deep.equal(case_1.expecteds[i]);
+        }
     });
 
     it('case-value-2: array with params', function () {
@@ -54,4 +58,13 @@ describe('value', function () {
             expect(actual).to.deep.equal(case_3.expecteds[i]);
         }
     });
+
+    it('case-value-4: value with extraParams', function () {
+        var n = case_4.inputs.length;
+        for (var i = 0; i < n; ++i) {
+            var actual = engine.run(case_4.template, case_4.inputs[i]);
+            expect(actual).to.deep.equal(case_4.expecteds[i]);
+        }
+    });
+
 });
