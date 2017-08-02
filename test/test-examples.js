@@ -489,7 +489,7 @@ describe('examples', function () {
         };
 
         var template = {
-            value: nestedTemplate,
+            template: nestedTemplate,
             dataKey: 'a'
         };
 
