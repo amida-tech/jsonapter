@@ -9,8 +9,7 @@ exports.template = {
                 M: 'Mr',
                 F: 'Ms'
             },
-            default: "Mr",
-            lookup: true
+            default: "Mr"
         }
     }
 };
