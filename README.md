@@ -461,8 +461,8 @@ var r = j2j.run(template, {
 console.log(r); // 'names are classified'
 ```
 
-This rule can be used to as lookup with `lookup:true`. When it is an object without `dataKey` we take it as literally.
-The `value` should not be used as a nested template. If `dataKey` is provided one can use it for lookup as shown below:
+This rule can be used to as lookup. When it is an object without `dataKey` we take it as literally.
+The `value` can not be used as a nested template. If `dataKey` is provided one can use it for lookup as shown below:
 
 ```js
 var template = {
@@ -472,8 +472,7 @@ var template = {
             value: {
                 M: 'Mr',
                 F: 'Ms'
-             },
-             lookup: true
+             }
             },
          name : { dataKey: "name" }
     }
