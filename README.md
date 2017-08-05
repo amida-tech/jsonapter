@@ -1333,6 +1333,9 @@ Here is the complete list of all available options for all types.
 | string    |   lowerCase  |  `lowerCase`: true
 | string    |   prefix     |  `prefix`: "a"
 | string    |   suffix     |  `suffix`: "b"
+| array     |   join       |  `join`: {`separator`(optional): "-"}, if no separator it will be ,(comma)
+| array     |   flatten    |  `flatten`: {`deep`(optional): true}, default is false
+| array     |   compact    |  `compact`: true
 | boolean   |   reverse    |  `reverse`: true
 | number    |   floor      |  `floor`: true
 | number    |   ceiling    |  `ceiling`: true
