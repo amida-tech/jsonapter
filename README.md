@@ -196,6 +196,54 @@ var r = j2j.run(template, {
 
 console.log(r); // [20, 30]
 ```
+One can pass a `source` parameter which can have value `parent`. It will lookup from the parent object.
+
+The `template` below will 
+
+```js
+
+var template = {
+    dataKey: "data",
+    template: {
+        dataKey: "address",
+        content: {
+            company: {dataKey: "company", source: "parent"},
+            street: {dataKey: "street"},
+            city: {dataKey: "city"},
+            state: {dataKey: "state"},
+            zip: {dataKey: "zip"}
+        }
+    }
+};
+
+var input = {
+    data: {
+        company: "Google",
+        address: {
+            street: "1600 Amphitheatre Parkway",
+            city: "Mountain View",
+            state: "CA",
+            zip: 94043
+        }
+    }
+};
+
+```
+This will produce the following output :
+
+```js
+
+{
+    company: "Google",
+    street: "1600 Amphitheatre Parkway",
+    city: "Mountain View",
+    state: "CA",
+    zip: 94043
+};
+
+```
+
+
 A second [`context`](#context) parameter is also passed to `dataKey` functions.  By default this parameter is an empty object but that can be [overridden](#context).  This is useful to further customize JSONPath function.
 
 `dataKey` can be an array.  In that case the first deep property that evaluates to a value that is not `null` is selected
