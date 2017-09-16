@@ -1,7 +1,7 @@
 "use strict";
 
 exports.template = {
-    value: function (input, parent, params, extraParams) {
+    value: function (input, parent, root, params, extraParams) {
         return (input > extraParams) ? input - extraParams: null;
     },
     params: 50

@@ -1,6 +1,6 @@
 "use strict";
 
-function parameter(input, parent, params, extraParams) {
+function parameter(input, parent, root, params, extraParams) {
     return {
         name: extraParams,
         value: input

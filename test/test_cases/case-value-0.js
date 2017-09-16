@@ -6,7 +6,7 @@ var nestedTemplate = {
             dataKey: 'detail.name'
         },
         n_prop_b: {
-            value: function (input, parent, params, extraParams) {
+            value: function (input, parent, root, params, extraParams) {
                 return input * extraParams.multiplier;
             },
             params: {multiplier: 4},
@@ -25,7 +25,7 @@ exports.template = {
             value: 'TITLE'
         },
         prop_a: {
-            value: function (status, parent, params, extraParams) {
+            value: function (status, parent, root, params, extraParams) {
                 console.log('extraParams '+ extraParams);
                 return parent.stage === 'Final' && status === 'Resolved' && extraParams;
             },

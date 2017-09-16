@@ -1,6 +1,6 @@
 "use strict";
 
-var mask = function (input, parent, params) {
+var mask = function (input, parent, root, params) {
     return params.mask ? params.maskCharacter : input;
 };
 

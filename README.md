@@ -454,11 +454,11 @@ var template = {
 var r = j2j.run(template, 'joe');
 console.log(r); // JOE
 ```
-One can also use the parent inside the value function.
+One can also use the parent and root inside the value function.
 
 ```js
 var template = {
-    value: function (input, parent) {
+    value: function (input, parent, root) {
         return parent.title.toUpperCase() + ' ' + input.toUpperCase();
     },
     dataKey: 'name'
@@ -476,7 +476,7 @@ One can also use the params to the value function.
 ```js
 var template = {
     dataKey: 'name',
-    value: function (input, parent, params) {
+    value: function (input, parent, root, params) {
         return params.title[input.gender] + ' ' + input;
     }
 };
@@ -541,7 +541,7 @@ The `value` function needs to written with `extraParams` as the last parameter.
 ```js
 
 var template = {
-    value: function (input, parent, params, extraParams) {
+    value: function (input, parent, root, params, extraParams) {
         return (input > extraParams) ? input - extraParams: null;
     },
     params: 50
