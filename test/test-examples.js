@@ -258,7 +258,7 @@ describe('examples', function () {
             }]);
 
         //console.log(r); // [{cost: 20, tax: 1.1, num: 0}, {cost: 30, tax: 1.3, num: 1}]
-        expect(r).to.deep.equal([
+    expect(r).to.deep.equal([
             {cost: 20, tax: 1.1, num: 0},
             {cost: 30, tax: 1.3, num: 1}
         ]);
