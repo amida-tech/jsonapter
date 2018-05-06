@@ -8,11 +8,11 @@ exports.template = {
     template: {
         dataKey: "address",
         content: {
-            company: {dataKey: "company", source: "parent"},
-            street: {dataKey: "street"},
-            city: {dataKey: "city"},
-            state: {dataKey: "state"},
-            zip: {dataKey: "zip"}
+            company: { dataKey: "company", source: "parent" },
+            street: { dataKey: "street" },
+            city: { dataKey: "city" },
+            state: { dataKey: "state" },
+            zip: { dataKey: "zip" }
         }
     }
 };
@@ -31,7 +31,6 @@ exports.inputs[0] = {
         }
     }
 };
-
 
 exports.expecteds[0] = {
     company: "Google",

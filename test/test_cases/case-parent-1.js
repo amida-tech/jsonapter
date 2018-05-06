@@ -10,11 +10,14 @@ exports.template = {
             template: {
                 dataKey: jsonave('a2[:].a_inner'),
                 content: {
-                    x_new: {dataKey: "x_outer", source: "parent", value: function (input, parent) {
-                        console.log(input, parent);
-                        return 2*input;
-                    },
-                    floor: true
+                    x_new: {
+                        dataKey: "x_outer",
+                        source: "parent",
+                        value: function (input, parent) {
+                            console.log(input, parent);
+                            return 2 * input;
+                        },
+                        floor: true
                     },
                     a_new: {}
                 }
@@ -57,18 +60,17 @@ exports.inputs[0] = {
     }]
 };
 
-
 exports.expecteds[0] = {
     stuff: [{
         x_new: 2,
         a_new: 4
-    },{
+    }, {
         x_new: 2,
         a_new: 7
-    },{
+    }, {
         x_new: 20,
         a_new: 13
-    },{
+    }, {
         x_new: 20,
         a_new: 16
     }]

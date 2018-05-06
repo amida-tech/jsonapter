@@ -8,23 +8,28 @@ exports.template = {
                 return result.substring(0, 1).toUpperCase() + result.substring(1);
             }
         },
-        nickNames: {dataKey: "nickNames", split: {separator: /\s+/}},
-        city: {dataKey: "city", trim: true, lowerCase: true},
-        state: {dataKey: "state", trim: true, upperCase: true},
-        child: {dataKey: "adult", reverse: true},
-        salary: {dataKey: "salary", output: "number"},
+        nickNames: { dataKey: "nickNames", split: { separator: /\s+/ } },
+        city: { dataKey: "city", trim: true, lowerCase: true },
+        state: { dataKey: "state", trim: true, upperCase: true },
+        child: { dataKey: "adult", reverse: true },
+        salary: { dataKey: "salary", output: "number" },
         date: {
             dataKey: ['birthDate', 'recordedDate']
         },
         year: {
-            dataKey: ['birthDate', 'recordedDate'], substring: {start: 0, end: 4}
+            dataKey: ['birthDate', 'recordedDate'],
+            substring: { start: 0, end: 4 }
         },
-        occurred: {timeStamp: {serialize: false}},
-        occurred1: {timeStamp: {}},
-        occurred2: {timeStamp: {serialize: function (value) {
-            return 'Date:' + value.toJSON();
-        }}},
-        occurred3: {timeStamp: {serialize: false}, output: "string"}
+        occurred: { timeStamp: { serialize: false } },
+        occurred1: { timeStamp: {} },
+        occurred2: {
+            timeStamp: {
+                serialize: function (value) {
+                    return 'Date:' + value.toJSON();
+                }
+            }
+        },
+        occurred3: { timeStamp: { serialize: false }, output: "string" }
     }
 };
 

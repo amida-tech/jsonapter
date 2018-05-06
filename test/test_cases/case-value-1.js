@@ -2,7 +2,7 @@
 
 exports.template = {
     value: function (input, parent, params, extraParams) {
-        return (input > extraParams) ? input - extraParams: null;
+        return (input > extraParams) ? input - extraParams : null;
     },
     params: 50
 };

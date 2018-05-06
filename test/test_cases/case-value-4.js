@@ -9,10 +9,10 @@ function parameter(input, parent, params, extraParams) {
 
 exports.template = {
     arrayContent: [{
-        dataKey: 'firstName',
-        value: parameter,
-        params: 'firstName'
-    },
+            dataKey: 'firstName',
+            value: parameter,
+            params: 'firstName'
+        },
         {
             dataKey: 'lastName',
             value: parameter,
@@ -35,8 +35,7 @@ exports.inputs[0] = {
     title: 'Mr'
 };
 
-exports.expecteds[0] = [
-    {
+exports.expecteds[0] = [{
         name: 'firstName',
         value: 'John'
     },
