@@ -2,21 +2,25 @@
 var _ = require('lodash');
 
 var cmap = {
-  a: "x",
-  b: "y",
-  c: "z"
+    a: "x",
+    b: "y",
+    c: "z"
 };
 
 exports.template = {
     content: {
         prop_s: {
-            dataKey: 'st', join: {separator: "~"}
+            dataKey: 'st',
+            join: { separator: "~" }
         },
         prop_sa: {
-            dataKey: 'st', value: cmap, join: {separator: "~"}
+            dataKey: 'st',
+            value: cmap,
+            join: { separator: "~" }
         },
         prop_sb: {
-            dataKey: 'sta', compact: true
+            dataKey: 'sta',
+            compact: true
         },
         type: 'Testable',
         prop_a: {
@@ -46,10 +50,12 @@ exports.template = {
             default: 'default value'
         },
         prop_ss: {
-            dataKey: 'stt', flatten: {}
+            dataKey: 'stt',
+            flatten: {}
         },
         prop_ss_deep: {
-            dataKey: 'stt', flatten: {deep: true}
+            dataKey: 'stt',
+            flatten: { deep: true }
         }
     },
     ignoreDeep: true
@@ -70,9 +76,11 @@ exports.input = {
     st: ["a", "b", "c"],
     sta: ["a", "b", "c", null, '', undefined],
     stt: [
-        [{namea: "a"}],
-        [[{nameb: "b"}]],
-        [{namec: "c"}]
+        [{ namea: "a" }],
+        [
+            [{ nameb: "b" }]
+        ],
+        [{ namec: "c" }]
     ]
 };
 
@@ -89,16 +97,16 @@ exports.expected = {
     prop_sa: "x~y~z",
     prop_sb: ["a", "b", "c"],
     prop_ss: [
-        {namea: "a"},
+        { namea: "a" },
         [
-            {nameb: "b"}
+            { nameb: "b" }
         ],
-        {namec: "c"}
+        { namec: "c" }
     ],
     prop_ss_deep: [
-        {namea: "a"},
-        {nameb: "b"},
-        {namec: "c"}
+        { namea: "a" },
+        { nameb: "b" },
+        { namec: "c" }
     ],
     prop_default: 'default value'
 };

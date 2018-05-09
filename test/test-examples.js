@@ -205,24 +205,23 @@ describe('examples', function () {
         var template = {
             dataKey: jsonave('$.[1:]'),
             content: {
-                cost: {dataKey: 'price'},
-                num: {arrayIndex: {}}
+                cost: { dataKey: 'price' },
+                num: { arrayIndex: {} }
             }
         };
 
-        var r = j2j.run(template,
-            [{
-                price: 10
-            }, {
-                price: 20
-            }, {
-                price: 30
-            }]);
+        var r = j2j.run(template, [{
+            price: 10
+        }, {
+            price: 20
+        }, {
+            price: 30
+        }]);
 
         //console.log(r); // [{cost: 20, num: 0}, {cost: 30, num: 1}]
         expect(r).to.deep.equal([
-            {cost: 20, num: 0},
-            {cost: 30, num: 1}
+            { cost: 20, num: 0 },
+            { cost: 30, num: 1 }
         ]);
     });
 
@@ -233,87 +232,80 @@ describe('examples', function () {
             template: {
                 assign: [{
                     content: {
-                        cost: {dataKey: 'price'},
-                        num: {arrayIndex: {}}
+                        cost: { dataKey: 'price' },
+                        num: { arrayIndex: {} }
                     }
                 }, {
                     content: {
-                        tax: {dataKey: 'tax'}
+                        tax: { dataKey: 'tax' }
                     }
-                }
-                ]
+                }]
             }
         };
 
-        var r = j2j.run(template,
-            [{
-                price: 10,
-                tax: 1.3
-            }, {
-                price: 20,
-                tax: 1.1
-            }, {
-                price: 30,
-                tax: 1.3
-            }]);
+        var r = j2j.run(template, [{
+            price: 10,
+            tax: 1.3
+        }, {
+            price: 20,
+            tax: 1.1
+        }, {
+            price: 30,
+            tax: 1.3
+        }]);
 
         //console.log(r); // [{cost: 20, tax: 1.1, num: 0}, {cost: 30, tax: 1.3, num: 1}]
         expect(r).to.deep.equal([
-            {cost: 20, tax: 1.1, num: 0},
-            {cost: 30, tax: 1.3, num: 1}
+            { cost: 20, tax: 1.1, num: 0 },
+            { cost: 30, tax: 1.3, num: 1 }
         ]);
     });
 
     it('dataKey - with arrayIndex and size in a nested array with start', function () {
         var template = {
             content: {
-                name: {dataKey: 'name'},
+                name: { dataKey: 'name' },
                 costs: {
                     dataKey: 'prices',
                     content: {
-                        cost: {dataKey: "price"},
-                        num: {arrayIndex: {start: 1}},
-                        total: {size: {}}
+                        cost: { dataKey: "price" },
+                        num: { arrayIndex: { start: 1 } },
+                        total: { size: {} }
                     }
                 },
-                num: {arrayIndex: {start: 1}},
+                num: { arrayIndex: { start: 1 } },
                 // total: {dataKey: 'name', size:{}}
-                total: {size: {}}
+                total: { size: {} }
             }
         };
 
-        var r = j2j.run(template,
-            [{
-                name: "apple",
-                prices: [{
+        var r = j2j.run(template, [{
+            name: "apple",
+            prices: [{
                     price: 10
                 },
-                    {
-                        price: 20
-                    }, {
-                        price: 30
-                    }
-                ]
-            }, {
-                name: "peach",
-                prices: [{
+                {
+                    price: 20
+                }, {
+                    price: 30
+                }
+            ]
+        }, {
+            name: "peach",
+            prices: [{
                     price: 20
                 },
-                    {
-                        price: 40
-                    }, {
-                        price: 60
-                    }
-                ]
-            }
+                {
+                    price: 40
+                }, {
+                    price: 60
+                }
             ]
-        );
+        }]);
 
-        expect(r).to.deep.equal([
-            {
+        expect(r).to.deep.equal([{
                 name: "apple",
-                costs: [
-                    {
+                costs: [{
                         cost: 10,
                         num: 1,
                         total: 3
@@ -334,8 +326,7 @@ describe('examples', function () {
             },
             {
                 name: "peach",
-                costs: [
-                    {
+                costs: [{
                         cost: 20,
                         num: 1,
                         total: 3
@@ -358,7 +349,7 @@ describe('examples', function () {
     });
 
     it('dataKey - with size of string', function () {
-        var template = {dataKey: 'name', size: {}};
+        var template = { dataKey: 'name', size: {} };
         var r = j2j.run(template, {
             name: 'USA'
         });
@@ -367,21 +358,22 @@ describe('examples', function () {
     });
 
     it('dataKey - with size of string inside content', function () {
-        var template = {dataKey: 'name',
-            content : {
+        var template = {
+            dataKey: 'name',
+            content: {
                 item: {},
-                size: {size: {}}
+                size: { size: {} }
             }
         };
         var r = j2j.run(template, {
             name: 'USA'
         });
         //console.log(r); // {item: 'USA', size: 3}
-        expect(r).to.deep.equal({item: 'USA', size: 3});
+        expect(r).to.deep.equal({ item: 'USA', size: 3 });
     });
 
     it('dataKey - with size of array', function () {
-        var template = {dataKey: 'name', size: {}};
+        var template = { dataKey: 'name', size: {} };
         var r = j2j.run(template, {
             name: ['USA', 'Cananda', 'Mexico']
         });
@@ -390,10 +382,10 @@ describe('examples', function () {
     });
 
     it('dataKey - with size of object', function () {
-        var template = {dataKey: 'countries', size: {}};
+        var template = { dataKey: 'countries', size: {} };
         var r = j2j.run(template, {
             countries: {
-                USA : {},
+                USA: {},
                 Cananda: {},
                 Mexico: {}
             }
@@ -1086,15 +1078,13 @@ describe('examples', function () {
             }
         };
 
-        var r = j2j.run(template, [
-            {
-                person : {
-                    lastName: 'DOE',
-                    firstName: 'JOE',
-                    birthYear: 1980
-                }
+        var r = j2j.run(template, [{
+            person: {
+                lastName: 'DOE',
+                firstName: 'JOE',
+                birthYear: 1980
             }
-        ]);
+        }]);
         //console.log(r); // {name: {last: 'DOE', first: 'JOE'}, age: 35}
         console.log(JSON.stringify(r, null, 2));
         expect(r).to.deep.equal({
@@ -1474,13 +1464,13 @@ describe('examples', function () {
 
         var template = {
             assign: [{
-                dataKey: "subscriber",
-                content: {
-                    id: function (input, parent) {
-                        return parent.subscriberNum + input.givenName[0] + input.familyName;
+                    dataKey: "subscriber",
+                    content: {
+                        id: function (input, parent) {
+                            return parent.subscriberNum + input.givenName[0] + input.familyName;
+                        }
                     }
-                }
-            },
+                },
                 {
                     dataKey: "subscriber",
                     template: nameTemplate

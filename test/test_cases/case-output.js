@@ -8,24 +8,23 @@ exports.template = {
                 dest_a: { dataKey: "a" },
                 dest_a1: { dataKey: "a", output: "string" },
                 dest_obj: { dataKey: "str", output: "object" },
-                empty: { dataKey: "count", output: {type: "boolean", reverse: true} },
-                visible: { dataKey: "hidden", output: {type: "boolean", reverse: true} },
-                ignore: { dataKey: "mark", output: {type: "boolean", reverse: true} },
+                empty: { dataKey: "count", output: { type: "boolean", reverse: true } },
+                visible: { dataKey: "hidden", output: { type: "boolean", reverse: true } },
+                ignore: { dataKey: "mark", output: { type: "boolean", reverse: true } },
                 visible1: { dataKey: "hidden1", reverse: true },
                 dest_ar: { dataKey: "a", round: true },
                 dest_af: { dataKey: "a", floor: true },
                 dest_ac: { dataKey: "a", ceiling: true },
-                dest_aStr: {dataKey: "a2", output: {type: "string", prefix: "Num ", suffix: "."}},
-                dest_bStr: {dataKey: "a1", prefix: "Num ", suffix: "."},
-                dest_cStr: {dataKey: "a1", size: {}, output: "string"}
+                dest_aStr: { dataKey: "a2", output: { type: "string", prefix: "Num ", suffix: "." } },
+                dest_bStr: { dataKey: "a1", prefix: "Num ", suffix: "." },
+                dest_cStr: { dataKey: "a1", size: {}, output: "string" }
             }
         },
-        count: {size: {}, output: {type: "string", prefix: "Total ", suffix: "."}}
+        count: { size: {}, output: { type: "string", prefix: "Total ", suffix: "." } }
     }
 };
 
-exports.input = [
-    {
+exports.input = [{
         a: 1.2,
         str: '{"a": "sample"}',
         a1: "1",
@@ -51,8 +50,7 @@ exports.input = [
 ];
 
 exports.expected = {
-    items: [
-        {
+    items: [{
             dest_a: 1.2,
             dest_a1: "1.2",
             dest_ar: 1,
@@ -60,7 +58,7 @@ exports.expected = {
             dest_af: 1,
             dest_ac: 2,
             dest_obj: {
-              a: "sample"
+                a: "sample"
             },
             visible: false,
             visible1: false,

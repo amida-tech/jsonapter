@@ -10,9 +10,9 @@ exports.template = {
             template: {
                 dataKey: "users",
                 content: {
-                    name: {dataKey: "name"},
-                    age: {dataKey: "age"},
-                    company: {dataKey: "company", source: "parent"}
+                    name: { dataKey: "name" },
+                    age: { dataKey: "age" },
+                    company: { dataKey: "company", source: "parent" }
                 }
             },
             flatten: true
@@ -25,16 +25,15 @@ exports.expecteds = [];
 
 exports.inputs[0] = {
     companies: [{
-        company: "Google",
-        users: [{
-            name: "John",
-            age: 30
-        }, {
-            name: "Jim",
-            age: 40
-        }
-        ]
-    },
+            company: "Google",
+            users: [{
+                name: "John",
+                age: 30
+            }, {
+                name: "Jim",
+                age: 40
+            }]
+        },
         {
             company: "Yahoo",
             users: [{
@@ -43,15 +42,13 @@ exports.inputs[0] = {
             }, {
                 name: "Tom",
                 age: 50
-            }
-            ]
-        }]
+            }]
+        }
+    ]
 };
 
-
 exports.expecteds[0] = {
-    actors: [
-        {
+    actors: [{
             name: "John",
             age: 30,
             company: "Google"
