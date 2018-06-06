@@ -83,6 +83,8 @@ The following are the list of all keys that have special meaning in template obj
 - [`template`](#template)
 - [`skip`](#skip)
 - [`output`](#output)
+- [`pick`](#pick)
+- [`omit`](#omit)
 
 <a name="dataKey" />
 #### `dataKey` rule
@@ -1389,6 +1391,79 @@ Here is the complete list of all available options for all types.
 | number    |   ceiling    |  `ceiling`: true
 | number    |   round      |  `round`: true
 
+<a name="pick" />
+#### `pick` rule
+
+This rule is used to add a list of properties as is.
+
+```js
+var template = {
+    content: {
+        fullName: {
+            value: function (input) {
+                return input.firstName + ' ' + input.lastName;
+            },
+            existsWhen: ['firstName', 'lastName']
+        },
+        age: {
+            value: function (input) {
+                return 2015 - input;
+            },
+            dataKey: 'birthYear'
+        }
+    },
+    pick: ['eyeColor', 'hairColor']
+};
+
+var input = {
+    lastName: 'Doe',
+    firstName: 'Joe',
+    birthYear: 2000,
+    eyeColor: 'blue',
+    hairColor: 'brown'
+};
+
+var r = j2j.run(template, input);
+console.log(r); // { fullName: 'Joe Doe', age: 15, eyeColor: 'blue', hairColor: 'brown' }
+}
+```
+
+<a name="omit" />
+#### `omit` rule
+
+This rule is used to add all the properties as is except the specified.
+
+```js
+var template = {
+    content: {
+        fullName: {
+            value: function (input) {
+                return input.firstName + ' ' + input.lastName;
+            },
+            existsWhen: ['firstName', 'lastName']
+        },
+        age: {
+            value: function (input) {
+                return 2015 - input;
+            },
+            dataKey: 'birthYear'
+        }
+    },
+    omit: ['eyeColor', 'lastName', 'firstName', 'birthYear']
+};
+
+var input = {
+    lastName: 'Doe',
+    firstName: 'Joe',
+    birthYear: 2000,
+    eyeColor: 'blue',
+    hairColor: 'brown',
+    weight: 242,
+};
+
+var r = j2j.run(template, input);
+console.log(r); // { fullName: 'Joe Doe', age: 15, hairColor: 'brown', weight: 242 }
+```
 
 ## Errors
 
