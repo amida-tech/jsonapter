@@ -37,6 +37,8 @@ exports.inputs = [{
     hairColor: 'brown'
 }];
 
+exports.inputs.push(exports.inputs.slice());
+
 exports.expecteds = [{
     fullName: 'Joe Doe',
     age: 15,
@@ -51,3 +53,5 @@ exports.expecteds = [{
 }, {
     hairColor: 'brown'
 }];
+
+exports.expecteds.push(exports.expecteds.slice());
