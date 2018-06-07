@@ -1,6 +1,6 @@
 {
     "name": "jsonapter",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "Template based JSON to JSON transformer",
     "main": "./index.js",
     "directories": {
@@ -10,7 +10,7 @@
         "test": "grunt mocha",
         "verify": "grunt"
     },
-    "author": "Afsin Ustundag <afsin.ustundag@us.pwc.com>",
+    "author": "Afsin Ustundag <afsin@amida.com>",
     "contributors": [
         "Gautam Dev <gdind2003@gmail.com>"
     ],
