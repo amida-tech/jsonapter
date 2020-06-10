@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 8
+  pre_build:
+    commands:
+        - npm install -g grunt-cli@0.1.x
+        - npm install --quiet
+        - npm install -g mocha
+        - npm install -g istanbul
+        - npm install coveralls
+  build:
+    commands:
+        - grunt 
