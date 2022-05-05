@@ -1,8 +1,5 @@
 "use strict";
 
-var chai = require('chai');
-
-var expect = chai.expect;
 var _ = require('lodash');
 // var j2j = bbj2j.instance();
 var bbj2j = require('../index');
@@ -10,261 +7,261 @@ var j2j = bbj2j.instance();
 
 describe('example error', function () {
 
-    it('More than one actionKeys cannot be present in the template', function () {
+  it('More than one actionKeys cannot be present in the template', function () {
 
-        var template = {
-            content: {
-                dest_a: {
-                    dataKey: 'a.c'
-                }
-            },
-            arrayContent: []
-        };
-
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
+    var template = {
+      content: {
+        dest_a: {
+          dataKey: 'a.c'
         }
-    });
+      },
+      arrayContent: []
+    };
 
-    it('arrayContent is an array and cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            arrayContent: []
-        };
+  it('arrayContent is an array and cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      arrayContent: []
+    };
 
-    it('assign is an array and cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            assign: []
-        };
+  it('assign is an array and cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      assign: []
+    };
 
-    it('content cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            content: {}
-        };
+  it('content cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      content: {}
+    };
 
-    it('firstOf is an array', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            firstOf: {}
-        };
+  it('firstOf is an array', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      firstOf: {}
+    };
 
-    it('firstOf is an array and cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            firstOf: []
-        };
+  it('firstOf is an array and cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      firstOf: []
+    };
 
-    it('content is an object and cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            content: {}
-        };
+  it('content is an object and cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      content: {}
+    };
 
-    it('content is an object, not an array', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            content: []
-        };
+  it('content is an object, not an array', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      content: []
+    };
 
-    it('template is an object, not an array', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            template: []
-        };
+  it('template is an object, not an array', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      template: []
+    };
 
-    it('template is an object and cannot be empty', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            template: {}
-        };
+  it('template is an object and cannot be empty', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      template: {}
+    };
 
-    it('dataKey cannot be an object', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            dataKey: {}
-        };
+  it('dataKey cannot be an object', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      dataKey: {}
+    };
 
-    it('dataKey cannot be an empty array', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            dataKey: []
-        };
+  it('dataKey cannot be an empty array', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      dataKey: []
+    };
 
-    it('dataKey cannot be an empty string', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            dataKey: ''
-        };
+  it('dataKey cannot be an empty string', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      dataKey: ''
+    };
 
-    it('dataKey cannot be null', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            dataKey: null
-        };
+  it('dataKey cannot be null', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      dataKey: null
+    };
 
-    it('paramKey cannot be object', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            paramKey: {}
-        };
+  it('paramKey cannot be object', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      paramKey: {}
+    };
 
-    it('paramKey cannot be an array', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            paramKey: []
-        };
+  it('paramKey cannot be an array', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      paramKey: []
+    };
 
-    it('paramKey cannot be an empty string', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            paramKey: ''
-        };
+  it('paramKey cannot be an empty string', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      paramKey: ''
+    };
 
-    it('paramKey cannot be an null', function () {
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
-        var template = {
-            paramKey: null
-        };
+  it('paramKey cannot be an null', function () {
 
-        try {
-            var r = j2j.run(template, {});
-        } catch (err) {
-            console.log(err);
-            expect(err).to.exist;
-        }
-    });
+    var template = {
+      paramKey: null
+    };
+
+    try {
+      var r = j2j.run(template, {});
+    } catch (err) {
+      console.log(err);
+      expect(err).toBeDefined();
+    }
+  });
 
 });

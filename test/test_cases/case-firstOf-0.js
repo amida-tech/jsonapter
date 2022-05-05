@@ -1,89 +1,89 @@
 "use strict";
 
 var dog = {
-    content: {
-        name: {
-            dataKey: 'name'
-        },
-        age: {
-            value: function (input) {
-                return 2015 - input;
-            },
-            dataKey: 'birthYear'
-        }
+  content: {
+    name: {
+      dataKey: 'name'
     },
-    existsWhen: {
-        type: 'dog'
+    age: {
+      value: function (input) {
+        return 2015 - input;
+      },
+      dataKey: 'birthYear'
     }
+  },
+  existsWhen: {
+    type: 'dog'
+  }
 };
 
 var book = {
-    content: {
-        author: {
-            dataKey: 'name'
-        },
-        age: {
-            value: function (input) {
-                return 2015 - input;
-            },
-            dataKey: 'printYear'
-        }
+  content: {
+    author: {
+      dataKey: 'name'
     },
-    existsWhen: {
-        type: 'book'
+    age: {
+      value: function (input) {
+        return 2015 - input;
+      },
+      dataKey: 'printYear'
     }
+  },
+  existsWhen: {
+    type: 'book'
+  }
 };
 
 exports.template = {
-    content: {
-        title: {
-            value: 'Things'
-        },
-        item: {
-            firstOf: [dog,
-                book
-            ]
-        }
+  content: {
+    title: {
+      value: 'Things'
+    },
+    item: {
+      firstOf: [dog,
+        book
+      ]
     }
+  }
 };
 
 exports.inputs = [];
 exports.expecteds = [];
 
 exports.inputs[0] = {
-    type: 'dog',
-    name: 'White',
-    birthYear: 2010
+  type: 'dog',
+  name: 'White',
+  birthYear: 2010
 };
 
 exports.expecteds[0] = {
-    title: 'Things',
-    item: {
-        name: 'White',
-        age: 5
-    }
+  title: 'Things',
+  item: {
+    name: 'White',
+    age: 5
+  }
 };
 
 exports.inputs[1] = {
-    type: 'book',
-    name: 'Doe, Joe',
-    printYear: 2011
+  type: 'book',
+  name: 'Doe, Joe',
+  printYear: 2011
 };
 
 exports.expecteds[1] = {
-    title: 'Things',
-    item: {
-        author: 'Doe, Joe',
-        age: 4
-    }
+  title: 'Things',
+  item: {
+    author: 'Doe, Joe',
+    age: 4
+  }
 };
 
 exports.inputs[2] = {
-    type: 'cat',
-    name: 'Purr',
-    printYear: 2012
+  type: 'cat',
+  name: 'Purr',
+  printYear: 2012
 };
 
 exports.expecteds[2] = {
-    title: 'Things'
+  title: 'Things'
 };

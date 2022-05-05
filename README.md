@@ -3,7 +3,7 @@ jsonapter
 
 Template Rules based JSON Transformer
 
-[![NPM](https://nodei.co/npm/jsonapter.png)](https://nodei.co/npm/jsonapter/)
+[![NPM](https://nodei.co/npm/@amida-tech/jsonapter.png)](https://nodei.co/npm/@amida-tech/jsonapter/)
 
 [![Build Status](https://travis-ci.org/amida-tech/jsonapter.svg)](https://travis-ci.org/amida-tech/jsonapter)
 [![Coverage Status](https://coveralls.io/repos/amida-tech/jsonapter/badge.png)](https://coveralls.io/r/amida-tech/jsonapter)
@@ -86,8 +86,7 @@ The following are the list of all keys that have special meaning in template obj
 - [`pick`](#pick)
 - [`omit`](#omit)
 
-<a name="dataKey" />
-#### `dataKey` rule
+### <a id="dataKey"></a>`dataKey` rule ###
 
 This rule selects a particular property of input. It can a `string`, `array` or `function`.
 ```js
@@ -138,7 +137,7 @@ console.log(r1); // null
 
 If the property or any of the properties on the deep property is an array `dataKey` you can use jsonave
 ```js
-var jsonave = require('jsonave').instance;
+var jsonave = require('@amida-tech/jsonave').instance;
 
 var template = {
     dataKey: jsonave('a.b[*].c')
@@ -181,7 +180,7 @@ console.log(r); // 'value_0'
 
 `dataKey` can be a function.  In particular JSONPath expressions are particularly useful and available from [jsonave](https://github.com/amida-tech/jsonave)
 ```js
-var jsonave = require('jsonave').instance;
+var jsonave = require('@amida-tech/jsonave').instance;
 var template = {
     dataKey: jsonave('book[1:].price')
 };
@@ -277,8 +276,7 @@ var r2 = j2j.run(template, {
 console.log(r2); // null
 ```
 
-<a name="paramKey" />
-#### `paramKey` rule
+### <a id="paramKey"></a>`paramKey` rule ###
 
 This rule selects a particular property of params, which can be passed as a optional third parameter to the run function as shown below :
 ```js
@@ -316,13 +314,11 @@ console.log(r0);
 }
 ```
 
-<a name="arrayIndex" />
-#### `arrayIndex` rule
+### <a id="arrayIndex"></a>`arrayIndex` rule ###
 This rule is primarily used to get the index of the array. Optionally `start` can be given.
 Without `start` it will be zero based as usual.
 
 ```js
-
       var template = {
           content: {
               cost: {dataKey: 'price'},
@@ -361,8 +357,7 @@ With `start` :
 console.log(r); // // [{cost: 20, num: 1}, {cost: 30, num: 2}]
 ```
 
-<a name="timeStamp" />
-#### `timeStamp` rule
+### <a id="timeStamp"></a>`timeStamp` rule ###
 
 This rule is  used to get timeStamp as `{occurred: {timeStamp: {serialize: true}}`. 
 It will produce an output `occurred: "2017-06-12T22:54:39.502Z"`. 
@@ -370,7 +365,6 @@ The `serialize` option is `true` by default. If it is `false` it will keep it a 
 The `serialize` option can be a `function` as well which one can use to formar the `Date` object.
 If the timeStamp tag is invoked multiple times in the same template the output will be same. 
 
-<a name="size" />
 This rule is primarily used to get the length of an array. It is also valid for length of string and object.
 If it is in the context of an array the `size` will print the length of the array. If not it will check if it is in the same template with the `dataKey`.
 
@@ -401,10 +395,7 @@ console.log(r); // // [{cost: 20, total:2, num: 0}, {cost: 30, total:2, num: 1}]
         //console.log(r); // 3
         expect(r).to.deep.equal(3);
 ```
-
-
-<a name="template" />
-#### `template` rule
+### <a id="template"></a>`template` rule ###
 
 This rule is primarily used to apply a nested template.
 ```js
@@ -428,8 +419,7 @@ var r = j2j.run(template, {
 console.log(r); // 'VALUE'
 ```
 
-<a name="value" />
-#### `value` rule
+### <a id="value"></a> `value` rule ###
 
 This rule is primarily used to format `input` or `input` property that is selected by `dataKey`.  In this case it is a function
 ```js
@@ -557,9 +547,7 @@ console.log(r); // [1, 2]
 
 ```
 
-
-<a name="content" />
-#### `content` rule
+### <a id="content"></a> `content` rule ###
 
 This rule is used to describe a new object based on `input`.  The property keys of the `content` becomes the properties in the destination object.  The property values of `content` are primarily other templates.
 This is an object and cannot be empty.
@@ -654,8 +642,7 @@ var r = j2j.run(template, {
 console.log(r); // {name: {last: 'DOE', first: 'JOE'}}
 ```
 
-<a name="arrayContent" />
-#### `arrayContent` rule
+### <a id="arrayContent"></a> `arrayContent` rule ###
 
 This rule is similar to `content` but is used to describe an `array` instead of an `object` based on `input`.  The array elements of the `arrayContent` becomes the array elements in the destination object.  Otherwise the array elements of the `arrayContent` work identically to properties of the `content`
 This is an array and cannot be empty.
@@ -689,8 +676,7 @@ var r = j2j.run(template, {
 console.log(r); // {name: ['DOE', 'JOE'], age: 35}
 ```
 
-<a name="constant" />
-#### `constant` rule
+### <a id="constant"></a> `constant` rule ###
 
 When values in `value` rule and property values in `content` rule are objects, they are assumed to be nested templates.  `constant` rule makes it possible to define a constant object within template
 ```js
@@ -730,8 +716,7 @@ var r = j2j.run(template, {
 console.log(r); // 'CONST'
 ```
 
-<a name="existsWhen" />
-#### `existsWhen` rule
+### <a name="existsWhen"></a> `existsWhen` rule ###
 
 This rule must be a predicate or array of predicates. If the predicate evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
 The predicate can be a `function`, an `object` or a simple `property`. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash.
@@ -834,8 +819,8 @@ var r2 = j2j.run(template, {
 console.log(r2.dest_a); // 'value_a'
 console.log(r2.dest_b); // 'value_b'
 ```
-<a name="existsEither" />
-#### `existsEither` rule
+
+### <a id="existsEither"></a> `existsEither` rule ###
 
 This rule must be an array of predicates. If all the predicates evaluates to false, the template is ignored.  This rule is evaluated before any other rule on the same level.
 The predicate can be a function, an object or a simple property. If it is an object or a simple property it works just like [iteratee](https://lodash.com/docs/4.16.3#iteratee) in lodash.
@@ -865,9 +850,7 @@ console.log(r0.dest_b); // 'value_b'
 
 ```
 
-
-<a name="existsUnless" />
-#### `existsUnless` rule
+### <a id="existsUnless"></a> `existsUnless` rule ###
 
  This rule must be a predicate or array of predicates. If the predicate evaluates to true, the template is ignored.  This rule is evaluated before any other rule but existsWhen.
 
@@ -955,8 +938,7 @@ var r2 = j2j.run(template, {
 console.log(r2); // null
 ```
 
-<a name="dataTransform" />
-#### `dataTransform` rule
+### <a id="dataTransform"></a> `dataTransform` rule ###
 
 This rule transforms `input` so that existing templates can be reused. It can be a string, or an `object` (another jsonapter template) as well as a `function`.
 ```js
@@ -1010,10 +992,7 @@ In the above example `dataTransform` can be a jsonapter template as shown below 
     }
 ```
 
-
-
-<a name="default" />
-#### `default` rule
+### <a id="default"></a> `default` rule ###
 
 This rule can be used to assign default values after templates are evaluated to be `null`
 The `default` can be a `function` as well. If `function` one can use the `input`, `parent`, and `params` just like `value` as `function`.
@@ -1069,9 +1048,7 @@ console.log(r3); // {last: 'unknown', first: 'JOE', title: 'MR'}
 
 ```
 
-
-<a name="multiple" />
-#### `multiple` rule
+### <a name="multiple"></a> `multiple` rule ###
 
 This rule can be used to change a template evaluted value into a one element array
 ```js
@@ -1098,7 +1075,7 @@ console.log(r); // {last: 'DOE', given: ['JOE']}
 
 This rule can be used to select the first value of a template evaluated array.  This is especially useful for conditional JSONPath expression
 ```js
-var jsonave = require('jsonave').instance;
+var jsonave = require('@amida-tech/jsonave').instance;
 var template = {
     dataKey: jsonave('book[?(@.id==="AF20")].price'),
     single: true
@@ -1120,8 +1097,7 @@ var r = j2j.run(template, {
 console.log(r); // 20
 ```
 
-<a name="firstOf" />
-#### `firstOf` rule
+### <a id="firstOf"></a> `firstOf` rule ###
 
 This rule must be assigned to an array of other templates and selects the first one that does not evaluate to `null`
 ```js
@@ -1194,8 +1170,7 @@ var r1 = j2j.run(template, {
 console.log(r1); // 'UNKNOWN'
 ```
 
-<a name="assign" />
-#### `assign` rule
+### <a id="assign"></a> `assign` rule ###
 
 This rule accepts an array of other templates that generate object results and works similar to [lodash assign method](https://lodash.com/docs#assign).  `assign` rule is primarily used to reuse existing templates to obtain a new one.
 This is an array and cannot be empty.
@@ -1229,8 +1204,7 @@ var r = j2j.run(template, {
 console.log(r); // {id: 'JDOE', last: 'DOE', first: 'JOE'}
 ```
 
-<a name="ignoreDeep" />
-#### `ignoreDeep` rule
+### <a id="ignoreDeep"></a> `ignoreDeep` rule ###
 
 This rule can be used when dots in [content](#content) keys are part of the key rather than describing a path
 ```js
@@ -1322,8 +1296,7 @@ var r = j2j.run(sampleTemplate, sampleInput);
 console.log(r); // {"firstName": "TIM", "middleName": "JOE", "lastName": "DOE", "address": "", "numbers": [], "groups": [1,2]}
 ```
 
-<a name="skip" />
-#### `skip` rule
+### <a id="skip"></a> `skip` rule ###
 
 This rule is used to skip a template.
 
@@ -1347,8 +1320,7 @@ console.log(r); // null
 ```
 
 
-<a name="output" />
-#### `output` rule
+### <a id="output"></a> `output` rule ###
 
 The `output` tag is there to modify final result. It can be either `string`, `boolean`, `number`, `object` or `function`.
 When it is a function it's first argument is the `result` of the template as shown below :
@@ -1391,8 +1363,7 @@ Here is the complete list of all available options for all types.
 | number    |   ceiling    |  `ceiling`: true
 | number    |   round      |  `round`: true
 
-<a name="pick" />
-#### `pick` rule
+### <a id="pick"></a> `pick` rule ###
 
 This rule is used to add a list of properties as is.
 
@@ -1428,8 +1399,7 @@ console.log(r); // { fullName: 'Joe Doe', age: 15, eyeColor: 'blue', hairColor: 
 }
 ```
 
-<a name="omit" />
-#### `omit` rule
+### <a id="omit"></a> `omit` rule ###
 
 This rule is used to add all the properties as is except the specified.
 
@@ -1499,8 +1469,7 @@ Only one of `actionKeys` can appear on a template on the same level. None of the
 
 Although in principle any of the implementation keys can be overridden, only `context` is designed as such.
 
-<a name="context" />
-#### `context` Override
+### <a id="context"></a> `context` Override ###
 
 When `dataKey` is a function this parameter is passed as the second parameter.  By default `context` is an empty object.  You can specify any property to be used by the `dataKey` function.  In particular [jsonave](https://github.com/amida-tech/jsonave) library allows functions in JSONPath expressions which can be specified with this key
 
@@ -1516,7 +1485,7 @@ var override = {
 var j2j_dkfno = bbj2j.instance(override, override);
 
 
-var jsonave = require('jsonave').instance;
+var jsonave = require('@amida-tech/jsonave').instance;
 var template = {
     dataKey: jsonave('book[:].price.round()')
 };

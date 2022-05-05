@@ -1,30 +1,30 @@
 "use strict";
 
 exports.template = {
-    content: {
-        item: {
-            firstOf: [{
-                value: function (input) {
-                    if (input.startsWith('a')) {
-                        return input + ' 1st';
-                    }
-                }
-            }, {
-                value: function (input) {
-                    if (input.startsWith('b')) {
-                        return input + ' 2nd';
-                    }
-                }
-            }, {
-                value: function (input) {
-                    if (input.startsWith('c')) {
-                        return input + ' 3rd';
-                    }
-                }
-            }]
+  content: {
+    item: {
+      firstOf: [{
+        value: function (input) {
+          if (input.startsWith('a')) {
+            return input + ' 1st';
+          }
         }
-    },
-    dataKey: 'prop'
+      }, {
+        value: function (input) {
+          if (input.startsWith('b')) {
+            return input + ' 2nd';
+          }
+        }
+      }, {
+        value: function (input) {
+          if (input.startsWith('c')) {
+            return input + ' 3rd';
+          }
+        }
+      }]
+    }
+  },
+  dataKey: 'prop'
 };
 
 exports.inputs = [];
