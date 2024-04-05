@@ -1,6 +1,6 @@
 {
   "name": "@amida-tech/jsonapter",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Template based JSON to JSON transformer",
   "main": "./index.js",
   "directories": {
@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "grunt test",
+    "coverage": "grunt coverage",
     "verify": "grunt"
   },
   "author": "Afsin Ustundag <afsin@amida.com>",
@@ -22,14 +23,14 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@amida-tech/jsonave": "^1.0.3",
-    "grunt": "^1.5.3",
+    "@amida-tech/jsonave": "^1.0.4",
+    "grunt": "^1.6.1",
     "grunt-contrib-jshint": "^3.2.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-mocha-test": "^0.13.3",
     "grunt-run": "^0.8.1",
-    "jest": "^27.5.1"
+    "jest": "^29.7.0"
   },
   "repository": {
     "type": "git",
